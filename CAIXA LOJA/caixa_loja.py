@@ -5,16 +5,17 @@ produtos = {
     "patinho": 19.99,
     "frango": 19.99,
     "batata": 5.99
-}
+} #criar um excel que integre junto com o python para que consiga acessar uma quantidade enorme de produtos, preço, quantia e etc..
 
 def soma (preco_total,quantia_dinheiro):
     troco = preco_total - quantia_dinheiro
     return troco
-
+    #criar função que possa gerar recibos de vendas, relatório de vendas, gerenciar transações e etc...
 
 def cadastrar (produtos,preco_produto,listaProdutos):
     listaProdutos[produtos] = preco_produto
     return listaProdutos
+    #criar função que acesse diretamente o excel criado para que ele consiga adicionar e modificar itens dentro do Excel
 
 
 def funcao_produtos(listaProdutos):
@@ -33,7 +34,7 @@ while True:
 
         while True:
             compra = 0
-            produto = input("Digite o nome do produto (digite s para finalizar): R$ ").lower()
+            produto = input("Digite o nome do produto (digite s para finalizar): ").lower()
 
             if produto == "s":
                 break
@@ -76,3 +77,7 @@ while True:
     else:
         print("Opção inválida, tente novamente...")
         continue
+
+#garantir que as informações dos clientes através de cartão de crédito estejam seguras 
+#criar chatbot para auxílio aos clientes de alguma forma
+#garantir que o python faça backups semanalmente para que nada seja perdido ao longo do tempo
