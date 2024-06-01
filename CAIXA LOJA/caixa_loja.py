@@ -81,3 +81,4 @@ while True:
 #garantir que as informações dos clientes através de cartão de crédito estejam seguras 
 #criar chatbot para auxílio aos clientes de alguma forma
 #garantir que o python faça backups semanalmente para que nada seja perdido ao longo do tempo
+#garantir que o python faça backups semanalmente para que nada seja perdido ao longo do tempo
