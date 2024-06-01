@@ -39,15 +39,43 @@ def print_figs():
     )
 
 
+    fig_sale_pie = px.bar(
+        sales_by_product,
+        title='Vendas Por Produtos',
+        color_discrete_sequence=['#FF4B4B'],
+        x = 'Faturamento',
+        y=sales_by_product.index,
+        width=500
+        )
+    fig_sale_pie.update_layout(
+        xaxis=dict(
+            visible=False
+        )
+    )
+
+    fig_sale = px.pie(
+        sales_by_product,
+        title='Vendas Por Produtos',
+        color_discrete_sequence=['#FF4B4B'],
+        names=sales_by_product.index,
+        values='Faturamento',
+        width=500
+    )
+    
+
     fig_sale_by_month = px.area(
         sales_by_month,
         title="Vendas Por Meses",
-        color_discrete_sequence=["#FF4B4B"]
+        color_discrete_sequence=["#FF4B4B"],
+        x = sales_by_month.index,
+        y= 'Faturamento',
         )
 
     fig_sale_by_product = px.bar(
         sales_by_product,
         title="Vendas por Produtos",
+        x= sales_by_product.index,
+        y = 'Faturamento',
         width=500,
         color_discrete_sequence=["#FF4B4B"]
     )
@@ -55,6 +83,8 @@ def print_figs():
     fig_sale_by_store = px.bar(
         sales_by_store,
         title="Vendas Por Loja",
+        x= sales_by_store.index,
+        y= 'Faturamento',
         width=500,
         color_discrete_sequence=["#FF4B4B"]
     )
@@ -62,32 +92,44 @@ def print_figs():
     st.plotly_chart(fig_sale_by_month)
     col1.plotly_chart(fig_sale_by_product)
     col2.plotly_chart(fig_sale_by_store)
-
-st.set_page_config(
-    page_title="Dashboard Vendas",
-    page_icon=":bar_chart:",
-    layout="wide",
-    initial_sidebar_state='collapsed'
-)
-
-st.header(":bar_chart: Dashboard Faturamento Total")
-
-month = st.sidebar.multiselect(
-    key= 1,
-    label='Mês',
-    options=df['Mes'].unique().tolist(),
-    default=df['Mes'].unique().tolist(),
-)
-
-df = df.query("Mes == @month")
-
-total_sales = round(sum_sales(df),2)
-total_vendas = total_quantity(df)
-
-col1, col2 = st.columns(2)
-col1.metric('Faturamente Total', total_sales)
-col2.metric('Quantidade de Vendas', total_vendas)
-st.markdown("""---""")
+    col3, col4 = st.columns(2)
+    col3.plotly_chart(fig_sale_pie)
+    col4.plotly_chart(fig_sale)
 
 
-print_figs()
+def main (df):
+    st.set_page_config(
+        page_title="Dashboard Vendas",
+        page_icon=":bar_chart:",
+        layout="wide",
+        initial_sidebar_state='collapsed'
+    )
+
+    st.header(":bar_chart: Dashboard Faturamento Total")
+
+    month = st.sidebar.multiselect(
+        key= 1,
+        label='Mês',
+        options=df['Mes'].unique().tolist(),
+        default=df['Mes'].unique().tolist()
+    )
+
+    df = df.query("Mes == @month")
+
+    total_sales = round(sum_sales(df),2)
+    total_vendas = total_quantity(df)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown('Faturamento Total')
+        st.header(f"$ {total_sales}")
+    with col2:
+        st.markdown('Quantidade total de Vendas')
+        st.header(f":orange[{total_vendas}]")
+    st.markdown("""---""")
+
+    print_figs()
+
+if __name__ == '__main__':
+    main(df)
