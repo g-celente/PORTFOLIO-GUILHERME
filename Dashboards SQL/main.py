@@ -13,7 +13,7 @@ conection = (
 
 conexao = pyodbc.connect(conection)
 
-querys = 'SELECT * FROM vendas'
+querys = 'SELECT * FROM sales'
 
 df = pd.read_sql(querys,conexao)
 
@@ -25,7 +25,7 @@ def total_quantity(dataframe):
     total_vendas = dataframe['Quantidade'].sum()
     return total_vendas
 
-def print_figs():
+def print_figs(df):
     sales_by_month = (
         df.groupby(by='Mes').sum(numeric_only=True)[['Faturamento']].sort_values('Mes')
     )
@@ -88,6 +88,7 @@ def print_figs():
         width=500,
         color_discrete_sequence=["#FF4B4B"]
     )
+
     col1, col2 = st.columns(2)
     st.plotly_chart(fig_sale_by_month)
     col1.plotly_chart(fig_sale_by_product)
@@ -129,7 +130,8 @@ def main (df):
         st.header(f":orange[{total_vendas}]")
     st.markdown("""---""")
 
-    print_figs()
+    print_figs(df)
+
 
 if __name__ == '__main__':
     main(df)
