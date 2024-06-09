@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>972</width>
+    <height>583</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QStackedWidget" name="Pages">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="pg_table">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tables">
+           <attribute name="title">
+            <string>TreeWidget</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QLineEdit" name="txt_file"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_open">
+                <property name="text">
+                 <string>Abrir</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_7">
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_5">
+                  <item>
+                   <widget class="QLabel" name="label_3">
+                    <property name="text">
+                     <string>ESTOQUE</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTreeWidget" name="tw_estoque">
+                    <column>
+                     <property name="text">
+                      <string>NFe</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>New Column</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Cliente</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>UF</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>New Column</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Cod Item</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>New Column</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Quantidade</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>UN</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Especie </string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Valor NFe</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>New Column</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Usuário</string>
+                     </property>
+                    </column>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="text">
+                   <string>SAÍDA</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <item>
+                   <widget class="QTreeWidget" name="tw_saida">
+                    <column>
+                     <property name="text">
+                      <string>1</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Nfe</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Serie</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Data Importação</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>Usuário</string>
+                     </property>
+                    </column>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_2">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_4">
+                 <item>
+                  <widget class="QPushButton" name="btn_importar">
+                   <property name="text">
+                    <string>Importar Excel</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_excel">
+                   <property name="text">
+                    <string>Gerar Excel</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_extorno">
+                   <property name="maximumSize">
+                    <size>
+                     <width>131</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Extorno</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_2">
+           <attribute name="title">
+            <string>Tab 2</string>
+           </attribute>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pg_home">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:48pt; font-weight:600; color:#090354;&quot;&gt;PySystem&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#090354;&quot;&gt;Gerenciamento de estoque&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="btn_home">
+         <property name="text">
+          <string>HOME</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_tables">
+         <property name="text">
+          <string>TABLES</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>CADASTRO</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_dashboards">
+         <property name="text">
+          <string>DASHBOARDS</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
