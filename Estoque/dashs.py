@@ -1,21 +1,9 @@
-import pyodbc 
 import pandas as pd
 import numpy as np
 import plotly_express as px
 import streamlit as st
 
-conection = (
-    "Driver={SQL Server};"
-    "Server=DESKTOP-4V72RH2;"
-    "Database=PythonSQL;"
-    "Trusted_Connection=yes;"
-)
-
-conexao = pyodbc.connect(conection)
-
-querys = 'SELECT * FROM sales'
-
-df = pd.read_sql(querys,conexao)
+df = pd.read_csv('sales.csv')
 
 def sum_sales(dataframe):
     total_sales = dataframe['Faturamento'].sum()
@@ -33,11 +21,6 @@ def print_figs(df):
     sales_by_product = (
         df.groupby(by='Produto').sum(numeric_only=True)[['Faturamento']].sort_values('Produto')
     )
-
-    sales_by_store = (
-        df.groupby(by='Loja').sum(numeric_only=True)[['Faturamento']].sort_values('Loja')
-    )
-
 
     fig_sale_pie = px.bar(
         sales_by_product,
@@ -80,22 +63,32 @@ def print_figs(df):
         color_discrete_sequence=["#FF4B4B"]
     )
 
-    fig_sale_by_store = px.bar(
-        sales_by_store,
-        title="Vendas Por Loja",
-        x= sales_by_store.index,
-        y= 'Faturamento',
-        width=500,
-        color_discrete_sequence=["#FF4B4B"]
+    fig_sales_in_maps = px.choropleth(
+        df,
+        locations="Estado", 
+        locationmode="USA-states", 
+        color="Quantidade", 
+        scope="usa",
+        template="plotly_dark",
+        width=1150
+    )
+    fig_sales_in_maps.update_geos(fitbounds="locations", visible=True)
+    fig_sales_in_maps.update_layout(
+        title="Vendas Nos Estados Unidos",
+        geo=dict(bgcolor= 'rgba(0,0,0,0)', lakecolor="#1f242d"),
+        margin={"r":0,"t":25,"l":0,"b":0},
+        paper_bgcolor="#1f242d",
+        plot_bgcolor="#1f242d",
     )
 
+
     col1, col2 = st.columns(2)
-    st.plotly_chart(fig_sale_by_month)
-    col1.plotly_chart(fig_sale_by_product)
-    col2.plotly_chart(fig_sale_by_store)
+    col1.plotly_chart(fig_sale_by_month)
+    col2.plotly_chart(fig_sale_by_product)
     col3, col4 = st.columns(2)
     col3.plotly_chart(fig_sale_pie)
     col4.plotly_chart(fig_sale)
+    st.plotly_chart(fig_sales_in_maps)
 
 
 def main (df):
