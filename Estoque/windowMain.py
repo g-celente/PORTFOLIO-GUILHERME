@@ -1,3 +1,6 @@
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
@@ -60,13 +63,14 @@ class Ui_MainWindow(object):
 
         self.Pages = QStackedWidget(self.centralwidget)
         self.Pages.setObjectName(u"Pages")
+        self.Pages.setStyleSheet(u"background-color: rgb(33, 130, 195);")
         self.pg_table = QWidget()
         self.pg_table.setObjectName(u"pg_table")
         self.horizontalLayout_4 = QHBoxLayout(self.pg_table)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.tabWidget = QTabWidget(self.pg_table)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.tabWidget.setStyleSheet(u"background-color: rgb(33, 130, 195);")
         self.tables = QWidget()
         self.tables.setObjectName(u"tables")
         self.verticalLayout_3 = QVBoxLayout(self.tables)
@@ -87,26 +91,26 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setPointSize(13)
         self.label_3.setFont(font)
-        self.label_3.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_3.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.verticalLayout_5.addWidget(self.label_3)
-
-        self.tb_estoque = QTableWidget(self.tables)
-        self.tb_estoque.setObjectName(u"tb_estoque")
-
-        self.verticalLayout_5.addWidget(self.tb_estoque)
-
-        self.label_2 = QLabel(self.tables)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setFont(font)
-        self.label_2.setStyleSheet(u"color: rgb(0, 0, 0);")
-
-        self.verticalLayout_5.addWidget(self.label_2)
 
         self.tb_saida = QTableWidget(self.tables)
         self.tb_saida.setObjectName(u"tb_saida")
 
         self.verticalLayout_5.addWidget(self.tb_saida)
+
+        self.label_2 = QLabel(self.tables)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet(u"color: rgb(255, 255, 255);")
+
+        self.verticalLayout_5.addWidget(self.label_2)
+
+        self.tb_estoque = QTableWidget(self.tables)
+        self.tb_estoque.setObjectName(u"tb_estoque")
+
+        self.verticalLayout_5.addWidget(self.tb_estoque)
 
 
         self.verticalLayout_7.addLayout(self.verticalLayout_5)
@@ -127,14 +131,14 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.insert_saida = QPushButton(self.frame_2)
         self.insert_saida.setObjectName(u"insert_saida")
-        self.insert_saida.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.insert_saida.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.verticalLayout_4.addWidget(self.insert_saida)
 
         self.btn_extorno = QPushButton(self.frame_2)
         self.btn_extorno.setObjectName(u"btn_extorno")
         self.btn_extorno.setMaximumSize(QSize(131, 16777215))
-        self.btn_extorno.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.btn_extorno.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.verticalLayout_4.addWidget(self.btn_extorno)
 
@@ -188,6 +192,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label_4 = QLabel(self.pg_cadastro)
         self.label_4.setObjectName(u"label_4")
+        self.label_4.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_4.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_2.addWidget(self.label_4)
@@ -196,6 +201,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.label_5 = QLabel(self.pg_cadastro)
         self.label_5.setObjectName(u"label_5")
+        self.label_5.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_8.addWidget(self.label_5)
 
@@ -211,6 +217,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.label_6 = QLabel(self.pg_cadastro)
         self.label_6.setObjectName(u"label_6")
+        self.label_6.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_7.addWidget(self.label_6)
 
@@ -226,6 +233,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.label_7 = QLabel(self.pg_cadastro)
         self.label_7.setObjectName(u"label_7")
+        self.label_7.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_6.addWidget(self.label_7)
 
@@ -241,6 +249,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.label_8 = QLabel(self.pg_cadastro)
         self.label_8.setObjectName(u"label_8")
+        self.label_8.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_5.addWidget(self.label_8)
 
@@ -256,6 +265,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.label_9 = QLabel(self.pg_cadastro)
         self.label_9.setObjectName(u"label_9")
+        self.label_9.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_9.addWidget(self.label_9)
 
@@ -263,6 +273,7 @@ class Ui_MainWindow(object):
         self.cb_perfil.addItem("")
         self.cb_perfil.addItem("")
         self.cb_perfil.setObjectName(u"cb_perfil")
+        self.cb_perfil.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_9.addWidget(self.cb_perfil)
 
@@ -278,6 +289,7 @@ class Ui_MainWindow(object):
 
         self.btn_cadastro = QPushButton(self.pg_cadastro)
         self.btn_cadastro.setObjectName(u"btn_cadastro")
+        self.btn_cadastro.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_10.addWidget(self.btn_cadastro)
 
@@ -299,7 +311,7 @@ class Ui_MainWindow(object):
         font1 = QFont()
         font1.setPointSize(15)
         self.label_13.setFont(font1)
-        self.label_13.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_13.setStyleSheet(u"color: rgb(255, 255, 255);")
         self.label_13.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_8.addWidget(self.label_13)
@@ -308,6 +320,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.label_14 = QLabel(self.pg_inserir_saida)
         self.label_14.setObjectName(u"label_14")
+        self.label_14.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_11.addWidget(self.label_14)
 
@@ -323,6 +336,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
         self.label_15 = QLabel(self.pg_inserir_saida)
         self.label_15.setObjectName(u"label_15")
+        self.label_15.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_12.addWidget(self.label_15)
 
@@ -338,6 +352,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.label_16 = QLabel(self.pg_inserir_saida)
         self.label_16.setObjectName(u"label_16")
+        self.label_16.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_13.addWidget(self.label_16)
 
@@ -353,6 +368,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.label_17 = QLabel(self.pg_inserir_saida)
         self.label_17.setObjectName(u"label_17")
+        self.label_17.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_14.addWidget(self.label_17)
 
@@ -368,6 +384,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
         self.label_18 = QLabel(self.pg_inserir_saida)
         self.label_18.setObjectName(u"label_18")
+        self.label_18.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_15.addWidget(self.label_18)
 
@@ -388,6 +405,7 @@ class Ui_MainWindow(object):
 
         self.btn_saida = QPushButton(self.pg_inserir_saida)
         self.btn_saida.setObjectName(u"btn_saida")
+        self.btn_saida.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.horizontalLayout_16.addWidget(self.btn_saida)
 
@@ -407,7 +425,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.Pages.setCurrentIndex(1)
+        self.Pages.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
 
 
