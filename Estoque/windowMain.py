@@ -95,10 +95,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.label_3)
 
-        self.tb_saida = QTableWidget(self.tables)
-        self.tb_saida.setObjectName(u"tb_saida")
+        self.tb_estoque = QTableWidget(self.tables)
+        self.tb_estoque.setObjectName(u"tb_estoque")
 
-        self.verticalLayout_5.addWidget(self.tb_saida)
+        self.verticalLayout_5.addWidget(self.tb_estoque)
 
         self.label_2 = QLabel(self.tables)
         self.label_2.setObjectName(u"label_2")
@@ -107,10 +107,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.label_2)
 
-        self.tb_estoque = QTableWidget(self.tables)
-        self.tb_estoque.setObjectName(u"tb_estoque")
+        self.tb_saida = QTableWidget(self.tables)
+        self.tb_saida.setObjectName(u"tb_saida")
 
-        self.verticalLayout_5.addWidget(self.tb_estoque)
+        self.verticalLayout_5.addWidget(self.tb_saida)
 
 
         self.verticalLayout_7.addLayout(self.verticalLayout_5)

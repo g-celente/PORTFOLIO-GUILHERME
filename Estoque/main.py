@@ -77,16 +77,18 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         df = pd.read_csv('sales.csv')
         colunas_desejadas = ['Pedido', 'Quantidade', 'Produto', 'Preco', 'Faturamento', 'Vendas', 'Data']
         df = df[colunas_desejadas]
-        values = list(df.values)
-        
+        values = df.values.tolist()  # Converte os dados para uma lista de listas
+
+        # Limpar e configurar a tabela
         self.tb_saida.clearContents()
         self.tb_saida.setRowCount(len(values))
-        self.tb_saida.setColumnCount(len(values[0]))
+        self.tb_saida.setColumnCount(len(df.columns))
 
-        # Configurar o cabeçalho horizontal
-        self.tb_saida.setHorizontalHeaderLabels([str(header) for header in values[0]])
+        # Configurar o cabeçalho com os nomes das colunas do DataFrame
+        self.tb_saida.setHorizontalHeaderLabels(df.columns)
+
         # Preencher a tabela com os dados
-        for row_index, row_data in enumerate(values[1:], start=0):  # Começar do índice 0
+        for row_index, row_data in enumerate(values):
             for column_index, cell_data in enumerate(row_data):
                 self.tb_saida.setItem(row_index, column_index, QTableWidgetItem(str(cell_data)))
 
