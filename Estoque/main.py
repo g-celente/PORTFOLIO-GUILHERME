@@ -4,6 +4,7 @@ from login import Ui_Login
 from windowMain import Ui_MainWindow
 import sys
 import subprocess
+import time as t
 from database import *
 
 
@@ -12,33 +13,63 @@ class Login(QWidget,Ui_Login):
         super(Login,self).__init__()
         self.setupUi(self)
         self.setWindowTitle('Login No Sistema')
+        self.tentativas = 3
 
         self.btn_entrar.clicked.connect(self.open_system)
 
     def open_system (self):
 
-        if self.txt_password.text() == '123':
-            self.w = MainWindow()
+        self.users = Database()
+        self.users.connect()
+
+        autenticado = self.users.check_user(self.txt_login.text().upper(), self.txt_password.text().upper())
+
+        if autenticado == 'Adminstrador' or autenticado == 'Usuário':
+            self.w = MainWindow(autenticado)
             self.w.show()
             self.close()
-        else:
-            print("Senha Inválida")
 
+        else:
+            if self.tentativas > 0:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setWindowTitle('Usuário Inválido')
+                msg.setText(f"Usuário Não registrado\n \n Tentativas: {self.tentativas}")
+                self.tentativas -=1
+                msg.exec()
+            
+            elif self.tentativas == 0:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setWindowTitle('Sistema Bloqueado')
+                msg.setText("O sistema foi Bloqueado, numeros de tentativas excedidas")
+                msg.exec()
+                t.sleep(3)
+                sys.exit()
+
+        self.users.close_connection()
 
 class MainWindow(QMainWindow,Ui_MainWindow):
-    def __init__(self):
+    def __init__(self,user):
         super(MainWindow,self).__init__()
         self.setupUi(self)
         self.setWindowTitle('Sistema de Vendas')
-        self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
-        self.btn_pg_cadastro.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_cadastro))
-        self.btn_tables.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_table))
-        self.btn_dashboards.clicked.connect(self.graficos)
+        
 
-        self.btn_cadastro.clicked.connect(self.subscribe_user)
+        if user.lower() == 'Usuário':
+            self.btn_pg_cadastro.setVisible(False)
+        
+        else:
+            self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
+            self.btn_pg_cadastro.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_cadastro))
+            self.btn_tables.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_table))
+            self.btn_dashboards.clicked.connect(self.graficos)
+            self.btn_cadastro.clicked.connect(self.subscribe_user)
+            self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
+            self.btn_tables.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_table))
 
     def graficos(self):
-        subprocess.Popen(['streamlit', 'run', r'Estoque\ddashs.py'])
+        subprocess.Popen(['streamlit', 'run', r'Estoque\dashs.py'])
 
     def subscribe_user(self):
 
