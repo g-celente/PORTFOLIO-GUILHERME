@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255,255, 255);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
@@ -26,6 +29,10 @@
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QPushButton" name="btn_home">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+         </property>
          <property name="text">
           <string>HOME</string>
          </property>
@@ -33,13 +40,21 @@
        </item>
        <item>
         <widget class="QPushButton" name="btn_tables">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+         </property>
          <property name="text">
           <string>TABLES</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_pg_cadastro">
+        <widget class="QPushButton" name="btn_pg_venda">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+         </property>
          <property name="text">
           <string>CADASTRO</string>
          </property>
@@ -47,6 +62,10 @@
        </item>
        <item>
         <widget class="QPushButton" name="btn_dashboards">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+         </property>
          <property name="text">
           <string>DASHBOARDS</string>
          </property>
@@ -58,12 +77,15 @@
     <item row="1" column="0">
      <widget class="QStackedWidget" name="Pages">
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="pg_table">
        <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
          <widget class="QTabWidget" name="tabWidget">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
           <property name="currentIndex">
            <number>0</number>
           </property>
@@ -73,18 +95,7 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <item>
-               <widget class="QLineEdit" name="txt_file"/>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_open">
-                <property name="text">
-                 <string>Abrir</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <layout class="QHBoxLayout" name="horizontalLayout_2"/>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -94,121 +105,44 @@
                  <layout class="QVBoxLayout" name="verticalLayout_5">
                   <item>
                    <widget class="QLabel" name="label_3">
+                    <property name="font">
+                     <font>
+                      <pointsize>13</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(0, 0, 0);</string>
+                    </property>
                     <property name="text">
                      <string>ESTOQUE</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QTreeWidget" name="tw_estoque">
-                    <column>
-                     <property name="text">
-                      <string>NFe</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>New Column</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Cliente</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>UF</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>New Column</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Cod Item</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>New Column</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Quantidade</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>UN</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Especie </string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Valor NFe</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>New Column</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Usuário</string>
-                     </property>
-                    </column>
-                   </widget>
+                   <widget class="QTableWidget" name="tb_saida"/>
                   </item>
-                 </layout>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_2">
-                  <property name="text">
-                   <string>SAÍDA</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_6">
                   <item>
-                   <widget class="QTreeWidget" name="tw_saida">
-                    <column>
-                     <property name="text">
-                      <string>1</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Nfe</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Serie</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Data Importação</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>Usuário</string>
-                     </property>
-                    </column>
+                   <widget class="QLabel" name="label_2">
+                    <property name="font">
+                     <font>
+                      <pointsize>13</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(0, 0, 0);</string>
+                    </property>
+                    <property name="text">
+                     <string>SAÍDA</string>
+                    </property>
                    </widget>
                   </item>
+                  <item>
+                   <widget class="QTableWidget" name="tb_estoque"/>
+                  </item>
                  </layout>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="verticalLayout_6"/>
                 </item>
                </layout>
               </item>
@@ -222,16 +156,12 @@
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_4">
                  <item>
-                  <widget class="QPushButton" name="btn_importar">
-                   <property name="text">
-                    <string>Importar Excel</string>
+                  <widget class="QPushButton" name="insert_saida">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(0, 0, 0);</string>
                    </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="btn_excel">
                    <property name="text">
-                    <string>Gerar Excel</string>
+                    <string>Inserir Saída</string>
                    </property>
                   </widget>
                  </item>
@@ -242,6 +172,9 @@
                      <width>131</width>
                      <height>16777215</height>
                     </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(0, 0, 0);</string>
                    </property>
                    <property name="text">
                     <string>Extorno</string>
@@ -272,6 +205,25 @@
            <attribute name="title">
             <string>Tab 2</string>
            </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_12">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>VENDAS</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="tableWidget_2">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
@@ -282,10 +234,11 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 255);</string>
+           <string notr="true">background-color: rgb(33, 130, 195);
+color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:48pt; font-weight:600; color:#090354;&quot;&gt;PySystem&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#090354;&quot;&gt;Gerenciamento de estoque&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:48pt; font-weight:600; color:#fff;&quot;&gt;PySystem&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:600; color:#fff;&quot;&gt;Gerenciamento de estoque&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -402,6 +355,123 @@
           </item>
           <item>
            <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pg_inserir_saida">
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QLabel" name="label_13">
+          <property name="font">
+           <font>
+            <pointsize>15</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>INSERIR SAÍDA</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Produto:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txt_produto"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <item>
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Quantidade:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txt_quantidade"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
+          <item>
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>Data:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txt_data"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <item>
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>Preco:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txt_preco"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_15">
+          <item>
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>Vendas:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txt_vendas"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_16">
+          <item>
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_saida">
+            <property name="text">
+             <string>CADASTRAR SAÍDA</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_19">
             <property name="text">
              <string/>
             </property>

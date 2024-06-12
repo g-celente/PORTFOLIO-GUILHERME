@@ -41,8 +41,8 @@ class Database():
             SELECT * FROM users;
         """)
         for linha in cursor.fetchall():
-            if linha[2].upper() == user.upper() and linha[3] == password and linha[4] == 'Administrador':
-                return "Administrador"
+            if linha[2].upper() == user.upper() and linha[3] == password and linha[4] == 'Adminstrador':
+                return "Adminstrador"
             elif linha[2].upper() == user.upper() and linha[3] == password and linha[4] == 'Usuário':
                 return "Usuário"
             else:

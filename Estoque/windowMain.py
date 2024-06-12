@@ -8,7 +8,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
     QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTabWidget, QTreeWidget, QTreeWidgetItem,
+    QStackedWidget, QTabWidget, QTableWidget, QTableWidgetItem,
     QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
@@ -16,6 +16,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(972, 583)
+        MainWindow.setStyleSheet(u"background-color: rgb(255,255, 255);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -28,21 +29,29 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.btn_home = QPushButton(self.frame)
         self.btn_home.setObjectName(u"btn_home")
+        self.btn_home.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
 
         self.horizontalLayout.addWidget(self.btn_home)
 
         self.btn_tables = QPushButton(self.frame)
         self.btn_tables.setObjectName(u"btn_tables")
+        self.btn_tables.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
 
         self.horizontalLayout.addWidget(self.btn_tables)
 
-        self.btn_pg_cadastro = QPushButton(self.frame)
-        self.btn_pg_cadastro.setObjectName(u"btn_pg_cadastro")
+        self.btn_pg_venda = QPushButton(self.frame)
+        self.btn_pg_venda.setObjectName(u"btn_pg_venda")
+        self.btn_pg_venda.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
 
-        self.horizontalLayout.addWidget(self.btn_pg_cadastro)
+        self.horizontalLayout.addWidget(self.btn_pg_venda)
 
         self.btn_dashboards = QPushButton(self.frame)
         self.btn_dashboards.setObjectName(u"btn_dashboards")
+        self.btn_dashboards.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
 
         self.horizontalLayout.addWidget(self.btn_dashboards)
 
@@ -57,22 +66,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.tabWidget = QTabWidget(self.pg_table)
         self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.tables = QWidget()
         self.tables.setObjectName(u"tables")
         self.verticalLayout_3 = QVBoxLayout(self.tables)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.txt_file = QLineEdit(self.tables)
-        self.txt_file.setObjectName(u"txt_file")
-
-        self.horizontalLayout_2.addWidget(self.txt_file)
-
-        self.btn_open = QPushButton(self.tables)
-        self.btn_open.setObjectName(u"btn_open")
-
-        self.horizontalLayout_2.addWidget(self.btn_open)
-
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_2)
 
@@ -84,29 +84,35 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.label_3 = QLabel(self.tables)
         self.label_3.setObjectName(u"label_3")
+        font = QFont()
+        font.setPointSize(13)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet(u"color: rgb(0, 0, 0);")
 
         self.verticalLayout_5.addWidget(self.label_3)
 
-        self.tw_estoque = QTreeWidget(self.tables)
-        self.tw_estoque.setObjectName(u"tw_estoque")
+        self.tb_estoque = QTableWidget(self.tables)
+        self.tb_estoque.setObjectName(u"tb_estoque")
 
-        self.verticalLayout_5.addWidget(self.tw_estoque)
+        self.verticalLayout_5.addWidget(self.tb_estoque)
+
+        self.label_2 = QLabel(self.tables)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setFont(font)
+        self.label_2.setStyleSheet(u"color: rgb(0, 0, 0);")
+
+        self.verticalLayout_5.addWidget(self.label_2)
+
+        self.tb_saida = QTableWidget(self.tables)
+        self.tb_saida.setObjectName(u"tb_saida")
+
+        self.verticalLayout_5.addWidget(self.tb_saida)
 
 
         self.verticalLayout_7.addLayout(self.verticalLayout_5)
 
-        self.label_2 = QLabel(self.tables)
-        self.label_2.setObjectName(u"label_2")
-
-        self.verticalLayout_7.addWidget(self.label_2)
-
         self.verticalLayout_6 = QVBoxLayout()
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.tw_saida = QTreeWidget(self.tables)
-        self.tw_saida.setObjectName(u"tw_saida")
-
-        self.verticalLayout_6.addWidget(self.tw_saida)
-
 
         self.verticalLayout_7.addLayout(self.verticalLayout_6)
 
@@ -119,19 +125,16 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.verticalLayout_4 = QVBoxLayout(self.frame_2)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.btn_importar = QPushButton(self.frame_2)
-        self.btn_importar.setObjectName(u"btn_importar")
+        self.insert_saida = QPushButton(self.frame_2)
+        self.insert_saida.setObjectName(u"insert_saida")
+        self.insert_saida.setStyleSheet(u"color: rgb(0, 0, 0);")
 
-        self.verticalLayout_4.addWidget(self.btn_importar)
-
-        self.btn_excel = QPushButton(self.frame_2)
-        self.btn_excel.setObjectName(u"btn_excel")
-
-        self.verticalLayout_4.addWidget(self.btn_excel)
+        self.verticalLayout_4.addWidget(self.insert_saida)
 
         self.btn_extorno = QPushButton(self.frame_2)
         self.btn_extorno.setObjectName(u"btn_extorno")
         self.btn_extorno.setMaximumSize(QSize(131, 16777215))
+        self.btn_extorno.setStyleSheet(u"color: rgb(0, 0, 0);")
 
         self.verticalLayout_4.addWidget(self.btn_extorno)
 
@@ -148,6 +151,20 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tables, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
+        self.verticalLayout_9 = QVBoxLayout(self.tab_2)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.label_12 = QLabel(self.tab_2)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setStyleSheet(u"color: rgb(255, 255, 255);")
+
+        self.verticalLayout_9.addWidget(self.label_12)
+
+        self.tableWidget_2 = QTableWidget(self.tab_2)
+        self.tableWidget_2.setObjectName(u"tableWidget_2")
+        self.tableWidget_2.setStyleSheet(u"color: rgb(255, 255, 255);")
+
+        self.verticalLayout_9.addWidget(self.tableWidget_2)
+
         self.tabWidget.addTab(self.tab_2, "")
 
         self.horizontalLayout_4.addWidget(self.tabWidget)
@@ -159,7 +176,8 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(self.pg_home)
         self.label.setObjectName(u"label")
-        self.label.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.label.setStyleSheet(u"background-color: rgb(33, 130, 195);\n"
+"color: rgb(255, 255, 255);")
 
         self.verticalLayout.addWidget(self.label)
 
@@ -272,6 +290,116 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout_10)
 
         self.Pages.addWidget(self.pg_cadastro)
+        self.pg_inserir_saida = QWidget()
+        self.pg_inserir_saida.setObjectName(u"pg_inserir_saida")
+        self.verticalLayout_8 = QVBoxLayout(self.pg_inserir_saida)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.label_13 = QLabel(self.pg_inserir_saida)
+        self.label_13.setObjectName(u"label_13")
+        font1 = QFont()
+        font1.setPointSize(15)
+        self.label_13.setFont(font1)
+        self.label_13.setStyleSheet(u"color: rgb(0, 0, 0);")
+        self.label_13.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_8.addWidget(self.label_13)
+
+        self.horizontalLayout_11 = QHBoxLayout()
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.label_14 = QLabel(self.pg_inserir_saida)
+        self.label_14.setObjectName(u"label_14")
+
+        self.horizontalLayout_11.addWidget(self.label_14)
+
+        self.txt_produto = QLineEdit(self.pg_inserir_saida)
+        self.txt_produto.setObjectName(u"txt_produto")
+
+        self.horizontalLayout_11.addWidget(self.txt_produto)
+
+
+        self.verticalLayout_8.addLayout(self.horizontalLayout_11)
+
+        self.horizontalLayout_12 = QHBoxLayout()
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.label_15 = QLabel(self.pg_inserir_saida)
+        self.label_15.setObjectName(u"label_15")
+
+        self.horizontalLayout_12.addWidget(self.label_15)
+
+        self.txt_quantidade = QLineEdit(self.pg_inserir_saida)
+        self.txt_quantidade.setObjectName(u"txt_quantidade")
+
+        self.horizontalLayout_12.addWidget(self.txt_quantidade)
+
+
+        self.verticalLayout_8.addLayout(self.horizontalLayout_12)
+
+        self.horizontalLayout_13 = QHBoxLayout()
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.label_16 = QLabel(self.pg_inserir_saida)
+        self.label_16.setObjectName(u"label_16")
+
+        self.horizontalLayout_13.addWidget(self.label_16)
+
+        self.txt_data = QLineEdit(self.pg_inserir_saida)
+        self.txt_data.setObjectName(u"txt_data")
+
+        self.horizontalLayout_13.addWidget(self.txt_data)
+
+
+        self.verticalLayout_8.addLayout(self.horizontalLayout_13)
+
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.label_17 = QLabel(self.pg_inserir_saida)
+        self.label_17.setObjectName(u"label_17")
+
+        self.horizontalLayout_14.addWidget(self.label_17)
+
+        self.txt_preco = QLineEdit(self.pg_inserir_saida)
+        self.txt_preco.setObjectName(u"txt_preco")
+
+        self.horizontalLayout_14.addWidget(self.txt_preco)
+
+
+        self.verticalLayout_8.addLayout(self.horizontalLayout_14)
+
+        self.horizontalLayout_15 = QHBoxLayout()
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.label_18 = QLabel(self.pg_inserir_saida)
+        self.label_18.setObjectName(u"label_18")
+
+        self.horizontalLayout_15.addWidget(self.label_18)
+
+        self.txt_vendas = QLineEdit(self.pg_inserir_saida)
+        self.txt_vendas.setObjectName(u"txt_vendas")
+
+        self.horizontalLayout_15.addWidget(self.txt_vendas)
+
+
+        self.verticalLayout_8.addLayout(self.horizontalLayout_15)
+
+        self.horizontalLayout_16 = QHBoxLayout()
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.label_20 = QLabel(self.pg_inserir_saida)
+        self.label_20.setObjectName(u"label_20")
+
+        self.horizontalLayout_16.addWidget(self.label_20)
+
+        self.btn_saida = QPushButton(self.pg_inserir_saida)
+        self.btn_saida.setObjectName(u"btn_saida")
+
+        self.horizontalLayout_16.addWidget(self.btn_saida)
+
+        self.label_19 = QLabel(self.pg_inserir_saida)
+        self.label_19.setObjectName(u"label_19")
+
+        self.horizontalLayout_16.addWidget(self.label_19)
+
+
+        self.verticalLayout_8.addLayout(self.horizontalLayout_16)
+
+        self.Pages.addWidget(self.pg_inserir_saida)
 
         self.gridLayout.addWidget(self.Pages, 1, 0, 1, 1)
 
@@ -279,7 +407,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.Pages.setCurrentIndex(2)
+        self.Pages.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
 
 
@@ -290,37 +418,16 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.btn_home.setText(QCoreApplication.translate("MainWindow", u"HOME", None))
         self.btn_tables.setText(QCoreApplication.translate("MainWindow", u"TABLES", None))
-        self.btn_pg_cadastro.setText(QCoreApplication.translate("MainWindow", u"CADASTRO", None))
+        self.btn_pg_venda.setText(QCoreApplication.translate("MainWindow", u"CADASTRO", None))
         self.btn_dashboards.setText(QCoreApplication.translate("MainWindow", u"DASHBOARDS", None))
-        self.btn_open.setText(QCoreApplication.translate("MainWindow", u"Abrir", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"ESTOQUE", None))
-        ___qtreewidgetitem = self.tw_estoque.headerItem()
-        ___qtreewidgetitem.setText(12, QCoreApplication.translate("MainWindow", u"Usu\u00e1rio", None));
-        ___qtreewidgetitem.setText(11, QCoreApplication.translate("MainWindow", u"New Column", None));
-        ___qtreewidgetitem.setText(10, QCoreApplication.translate("MainWindow", u"Valor NFe", None));
-        ___qtreewidgetitem.setText(9, QCoreApplication.translate("MainWindow", u"Especie ", None));
-        ___qtreewidgetitem.setText(8, QCoreApplication.translate("MainWindow", u"UN", None));
-        ___qtreewidgetitem.setText(7, QCoreApplication.translate("MainWindow", u"Quantidade", None));
-        ___qtreewidgetitem.setText(6, QCoreApplication.translate("MainWindow", u"New Column", None));
-        ___qtreewidgetitem.setText(5, QCoreApplication.translate("MainWindow", u"Cod Item", None));
-        ___qtreewidgetitem.setText(4, QCoreApplication.translate("MainWindow", u"New Column", None));
-        ___qtreewidgetitem.setText(3, QCoreApplication.translate("MainWindow", u"UF", None));
-        ___qtreewidgetitem.setText(2, QCoreApplication.translate("MainWindow", u"Cliente", None));
-        ___qtreewidgetitem.setText(1, QCoreApplication.translate("MainWindow", u"New Column", None));
-        ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"NFe", None));
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"SA\u00cdDA", None))
-        ___qtreewidgetitem1 = self.tw_saida.headerItem()
-        ___qtreewidgetitem1.setText(4, QCoreApplication.translate("MainWindow", u"Usu\u00e1rio", None));
-        ___qtreewidgetitem1.setText(3, QCoreApplication.translate("MainWindow", u"Data Importa\u00e7\u00e3o", None));
-        ___qtreewidgetitem1.setText(2, QCoreApplication.translate("MainWindow", u"Serie", None));
-        ___qtreewidgetitem1.setText(1, QCoreApplication.translate("MainWindow", u"Nfe", None));
-        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("MainWindow", u"1", None));
-        self.btn_importar.setText(QCoreApplication.translate("MainWindow", u"Importar Excel", None))
-        self.btn_excel.setText(QCoreApplication.translate("MainWindow", u"Gerar Excel", None))
+        self.insert_saida.setText(QCoreApplication.translate("MainWindow", u"Inserir Sa\u00edda", None))
         self.btn_extorno.setText(QCoreApplication.translate("MainWindow", u"Extorno", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tables), QCoreApplication.translate("MainWindow", u"TreeWidget", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"VENDAS", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Tab 2", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:48pt; font-weight:600; color:#090354;\">PySystem</span></p><p align=\"center\"><span style=\" font-size:28pt; font-weight:600; color:#090354;\">Gerenciamento de estoque</span></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:48pt; font-weight:600; color:#fff;\">PySystem</span></p><p align=\"center\"><span style=\" font-size:28pt; font-weight:600; color:#fff;\">Gerenciamento de estoque</span></p></body></html>", None))  
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"CADASTRAR USU\u00c1RIO", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Nome:", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Usu\u00e1rio:", None))
@@ -333,4 +440,13 @@ class Ui_MainWindow(object):
         self.label_10.setText("")
         self.btn_cadastro.setText(QCoreApplication.translate("MainWindow", u"Cadastrar", None))
         self.label_11.setText("")
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"INSERIR SA\u00cdDA", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Produto:", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Quantidade:", None))
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Data:", None))
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Preco:", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Vendas:", None))
+        self.label_20.setText("")
+        self.btn_saida.setText(QCoreApplication.translate("MainWindow", u"CADASTRAR SA\u00cdDA", None))
+        self.label_19.setText("")
     # retranslateUi
