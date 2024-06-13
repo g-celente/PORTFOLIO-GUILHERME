@@ -6,7 +6,6 @@ import sys
 import subprocess
 import time as t
 from database import *
-import csv
 
 class Login(QWidget,Ui_Login):
     def __init__(self):
@@ -67,6 +66,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             self.btn_cadastro.clicked.connect(self.subscribe_user)
             self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
             self.btn_tables.clicked.connect(self.show_table)
+            self.btn_tables.clicked.connect(self.table_estoque)
             self.insert_saida.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_saida))
 
     def subprocess_dash(self):
@@ -74,23 +74,40 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
     
     def show_table(self):
-        df = pd.read_csv('sales.csv')
+        df = pd.read_excel('sales.xlsx')
         colunas_desejadas = ['Pedido', 'Quantidade', 'Produto', 'Preco', 'Faturamento', 'Vendas', 'Data']
         df = df[colunas_desejadas]
-        values = df.values.tolist()  # Converte os dados para uma lista de listas
+        values = df.values.tolist() 
 
-        # Limpar e configurar a tabela
         self.tb_saida.clearContents()
         self.tb_saida.setRowCount(len(values))
         self.tb_saida.setColumnCount(len(df.columns))
 
-        # Configurar o cabeçalho com os nomes das colunas do DataFrame
         self.tb_saida.setHorizontalHeaderLabels(df.columns)
 
-        # Preencher a tabela com os dados
         for row_index, row_data in enumerate(values):
             for column_index, cell_data in enumerate(row_data):
                 self.tb_saida.setItem(row_index, column_index, QTableWidgetItem(str(cell_data)))
+
+    def table_estoque(self):
+        df = pd.read_excel('estoque.xlsx')
+        values = df.values.tolist()
+
+        self.tb_estoque.clearContents()
+        self.tb_estoque.setRowCount(len(values))
+        self.tb_estoque.setColumnCount(len(df.columns))
+
+        self.tb_estoque.setHorizontalHeaderLabels(df.columns)
+
+        for row_index, row_data in enumerate(values):
+            for column_index, cell_data in enumerate(row_data):
+                self.tb_estoque.setItem(row_index, column_index, QTableWidgetItem(str(cell_data)))
+
+    def extorno_table(self):
+        pass
+
+    def cadastrar_produto(self):
+        pass
 
     def subscribe_user(self):
 
