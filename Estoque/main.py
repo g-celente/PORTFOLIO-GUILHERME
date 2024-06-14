@@ -77,7 +77,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
     
     def show_table(self):
         df = pd.read_excel('sales.xlsx')
-        colunas_desejadas = ['Pedido', 'Quantidade', 'Produto', 'Preco', 'Faturamento', 'Vendas', 'Data']
+        colunas_desejadas = ['Pedido', 'Quantidade', 'Produto', 'Preco', 'Faturamento', 'Data']
         df = df[colunas_desejadas]
         values = df.values.tolist() 
 
@@ -109,34 +109,67 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             self.td_estoque.resizeColumnsToContents()
 
     def cadastrar_venda(self):
-        produto = self.txt_produto.text()
+        produto = self.txt_produto.text().capitalize()
         quantidade = self.txt_quantidade.text()
-        data = self.txt_data.text()
+        data = self.cb_data.text()
         preco = self.txt_preco.text()
-        vendas = self.txt_vendas.text()
+        vazio = ''
 
-        # Carregar a planilha existente
-        arquivo = 'sales.xlsx'
-        panilha = openpyxl.load_workbook(arquivo)
-        folha = panilha.active
+        if produto == vazio or quantidade == vazio or preco == vazio:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setWindowTitle('Valores Inseridos')
+            msg.setText('Por Favor, Informe todos os Valores!')
+            msg.exec()
+            return None
+        else:
+            df = pd.read_excel('estoque.xlsx') 
+            df_produtos = df['Produto']
+            produto_filtrado = df[df_produtos == produto]
+            quantidadeProduto = produto_filtrado['Quantidade'].values[0]
+            quantidade_estoque = int(quantidadeProduto)
+            quantidade = int(quantidade)
 
-        # Determinar a próxima linha disponível
-        proxima_linha = folha.max_row + 1
 
-        # Inserir dados nas colunas desejadas
-        folha.cell(column=12, row=proxima_linha, value=produto)  # Coluna L
-        folha.cell(column=3, row=proxima_linha, value=quantidade)  # Coluna C
-        folha.cell(column=7, row=proxima_linha, value=data)  # Coluna G
-        folha.cell(column=4, row=proxima_linha, value=preco)  # Coluna D
-        folha.cell(column=6, row=proxima_linha, value=vendas)  # Coluna F
+            if produto not in df_produtos.values:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setWindowTitle('Produto Inválido')
+                msg.setText('Produto Não Encontrado\nna Planilha de Estoque!')
+                msg.exec()
+                return None
+            elif quantidade > quantidade_estoque:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setWindowTitle('Falha na Quantidade')
+                msg.setText(f'Quantidade em Estoque do {produto} em Falta! ')
+                msg.exec()
+                return None
+            else:
+                df.loc[df['Produto'] == produto, 'Quantidade'] -= quantidade
+                
+                df.to_excel('estoque.xlsx', index=False)
 
-        # Salvar a planilha
-        panilha.save(arquivo)
+                arquivo = 'sales.xlsx'
+                panilha = openpyxl.load_workbook(arquivo)
+                folha = panilha.active
 
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Information)
-        msg.setWindowTitle('Cadastro Realizado')
-        msg.setText('Venda Cadastrada Com Sucesso')
+                
+                proxima_linha = folha.max_row + 1
+
+                
+                folha.cell(column=11, row=proxima_linha, value=produto)  
+                folha.cell(column=3, row=proxima_linha, value=quantidade) 
+                folha.cell(column=6, row=proxima_linha, value=data)  
+                folha.cell(column=4, row=proxima_linha, value=preco)  
+
+                panilha.save(arquivo)
+
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Information)
+                msg.setWindowTitle('Cadastro Realizado')
+                msg.setText('Venda Cadastrada Com Sucesso')
+                msg.exec()
 
 
     def cadastrar_produto(self):

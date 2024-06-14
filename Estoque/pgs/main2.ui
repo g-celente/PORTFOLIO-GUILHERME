@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>972</width>
-    <height>583</height>
+    <height>545</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,8 @@
        <item>
         <widget class="QPushButton" name="btn_home">
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
+          <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>HOME</string>
@@ -80,11 +80,11 @@ background-color: rgb(255, 255, 255);</string>
            <string notr="true">background-color: rgb(39, 39, 39);</string>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tables">
            <attribute name="title">
-            <string>TreeWidget</string>
+            <string>ESTOQUE</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
@@ -142,7 +142,17 @@ background-color: rgb(255, 255, 255);</string>
                  <item>
                   <widget class="QPushButton" name="insert_produto">
                    <property name="styleSheet">
-                    <string notr="true">color: rgb(255, 255, 255);</string>
+                    <string notr="true">
+QPushButton{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255,255,255);
+	color:rgb(0,0,0);
+}
+</string>
                    </property>
                    <property name="text">
                     <string>INSERIR PRODUTO</string>
@@ -158,7 +168,17 @@ background-color: rgb(255, 255, 255);</string>
                     </size>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">color: rgb(255, 255, 255);</string>
+                    <string notr="true">
+QPushButton{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255,255,255);
+	color:rgb(0,0,0);
+}
+</string>
                    </property>
                    <property name="text">
                     <string>EXCLUIR PRODUTO</string>
@@ -187,7 +207,7 @@ background-color: rgb(255, 255, 255);</string>
           </widget>
           <widget class="QWidget" name="tab_2">
            <attribute name="title">
-            <string>Tab 2</string>
+            <string>SAÍDAS</string>
            </attribute>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
@@ -227,8 +247,23 @@ background-color: rgb(255, 255, 255);</string>
              <layout class="QVBoxLayout" name="verticalLayout_9">
               <item>
                <widget class="QPushButton" name="insert_saida">
+                <property name="font">
+                 <font>
+                  <pointsize>8</pointsize>
+                 </font>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(255, 255, 255);</string>
+                 <string notr="true">
+QPushButton{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255,255,255);
+	color:rgb(0,0,0);
+}
+</string>
                 </property>
                 <property name="text">
                  <string>INSERIR SAÍDA</string>
@@ -237,8 +272,24 @@ background-color: rgb(255, 255, 255);</string>
               </item>
               <item>
                <widget class="QPushButton" name="btn_extorno">
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(255, 255, 255);</string>
+                 <string notr="true">
+QPushButton{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255,255,255);
+	color:rgb(0,0,0);
+}
+</string>
                 </property>
                 <property name="text">
                  <string>EXTORNO</string>
@@ -247,8 +298,24 @@ background-color: rgb(255, 255, 255);</string>
               </item>
               <item>
                <widget class="QPushButton" name="btn_dashboards">
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>9</pointsize>
+                 </font>
+                </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(255, 255, 255);</string>
+                 <string notr="true">
+QPushButton{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255,255,255);
+	color:rgb(0,0,0);
+}
+</string>
                 </property>
                 <property name="text">
                  <string>GERAR GRÁFICOS</string>
@@ -292,13 +359,37 @@ color: rgb(255, 255, 255);</string>
        </layout>
       </widget>
       <widget class="QWidget" name="pg_cadastro">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="verticalLayout_13">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>23</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>TELA DE CADASTRO</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QLabel" name="label_4">
           <property name="font">
            <font>
             <family>Segoe UI</family>
-            <pointsize>19</pointsize>
+            <pointsize>13</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
@@ -307,7 +398,7 @@ color: rgb(255, 255, 255);</string>
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
-           <string>CADASTRAR USUÁRIO</string>
+           <string>CADASTRO DE USUÁRIO</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -315,147 +406,190 @@ color: rgb(255, 255, 255);</string>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLabel" name="label_5">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Nome:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="txt_nome">
-            <property name="placeholderText">
-             <string>Digite o seu Nome:</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <widget class="QLabel" name="label_6">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Usuário:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="txt_usuario">
-            <property name="placeholderText">
-             <string>Seu nome de Usuário</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QLabel" name="label_7">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Senha: </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="txt_senha">
-            <property name="placeholderText">
-             <string>Digite sua Senha</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QLabel" name="label_8">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Senha:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="txt_senha2">
-            <property name="placeholderText">
-             <string>Repita a Senha Novamente</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_9">
-          <item>
-           <widget class="QLabel" name="label_9">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Perfil</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="cb_perfil">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
             <item>
-             <property name="text">
-              <string>Usuário</string>
-             </property>
+             <widget class="QLabel" name="label_5">
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Nome:</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <property name="text">
-              <string>Adminstrador</string>
-             </property>
+             <widget class="QLineEdit" name="txt_nome">
+              <property name="styleSheet">
+               <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+              </property>
+              <property name="placeholderText">
+               <string>Digite o seu Nome:</string>
+              </property>
+             </widget>
             </item>
-           </widget>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Usuário:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="txt_usuario">
+              <property name="styleSheet">
+               <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+              </property>
+              <property name="placeholderText">
+               <string>Seu nome de Usuário</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Senha: </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="txt_senha">
+              <property name="styleSheet">
+               <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+              </property>
+              <property name="placeholderText">
+               <string>Digite sua Senha</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_8">
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Senha:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="txt_senha2">
+              <property name="styleSheet">
+               <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+              </property>
+              <property name="placeholderText">
+               <string>Repita a Senha Novamente</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_9">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Perfil:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="cb_perfil">
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>11</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>Usuário</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Adminstrador</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
@@ -470,8 +604,23 @@ color: rgb(255, 255, 255);</string>
           </item>
           <item>
            <widget class="QPushButton" name="btn_cadastro">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
+             <string notr="true">
+QPushButton{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255,255,255);
+	color:rgb(0,0,0);
+}
+</string>
             </property>
             <property name="text">
              <string>Cadastrar</string>
@@ -490,13 +639,29 @@ color: rgb(255, 255, 255);</string>
        </layout>
       </widget>
       <widget class="QWidget" name="pg_inserir_saida">
-       <layout class="QVBoxLayout" name="verticalLayout_8">
+       <layout class="QVBoxLayout" name="verticalLayout_14">
+        <item>
+         <widget class="QLabel" name="label_21">
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TELA DE CADASTRO DE VENDAS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QLabel" name="label_13">
           <property name="font">
            <font>
             <family>Segoe UI</family>
-            <pointsize>19</pointsize>
+            <pointsize>15</pointsize>
             <weight>75</weight>
             <bold>true</bold>
            </font>
@@ -513,87 +678,155 @@ color: rgb(255, 255, 255);</string>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <layout class="QVBoxLayout" name="verticalLayout_8">
           <item>
-           <widget class="QLabel" name="label_14">
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Produto:</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Produto:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="txt_produto">
+              <property name="styleSheet">
+               <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QLineEdit" name="txt_produto"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_12">
-          <item>
-           <widget class="QLabel" name="label_15">
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Quantidade:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="txt_quantidade"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_13">
-          <item>
-           <widget class="QLabel" name="label_16">
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Data:</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="QLabel" name="label_17">
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Preco:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="txt_preco">
+              <property name="styleSheet">
+               <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QLineEdit" name="txt_data"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_14">
-          <item>
-           <widget class="QLabel" name="label_17">
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Preco:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="txt_preco"/>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_15">
-          <item>
-           <widget class="QLabel" name="label_18">
-            <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Vendas:</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QLabel" name="label_15">
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Quantidade:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="txt_quantidade">
+              <property name="styleSheet">
+               <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QLineEdit" name="txt_vendas"/>
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <item>
+             <widget class="QLabel" name="label_16">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>15</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="text">
+               <string>Data:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDateEdit" name="dateEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
@@ -609,7 +842,17 @@ color: rgb(255, 255, 255);</string>
           <item>
            <widget class="QPushButton" name="btn_saida">
             <property name="styleSheet">
-             <string notr="true">color: rgb(255, 255, 255);</string>
+             <string notr="true">
+QPushButton{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255,255,255);
+	color:rgb(0,0,0);
+}
+</string>
             </property>
             <property name="text">
              <string>CADASTRAR SAÍDA</string>

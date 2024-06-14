@@ -1,3 +1,11 @@
+################################################################################
+## Form generated from reading UI file 'login.ui'
+##
+## Created by: Qt User Interface Compiler version 6.7.1
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
@@ -13,11 +21,11 @@ class Ui_Login(object):
         if not Login.objectName():
             Login.setObjectName(u"Login")
         Login.resize(553, 621)
-        Login.setStyleSheet(u"background-color: rgb(0, 81, 188);")
+        Login.setStyleSheet(u"background-color: rgb(76, 76, 76);")
         self.frame = QFrame(Login)
         self.frame.setObjectName(u"frame")
         self.frame.setGeometry(QRect(30, 170, 491, 411))
-        self.frame.setStyleSheet(u"background-color: rgba(0, 0, 0,0.2);")
+        self.frame.setStyleSheet(u"background-color: rgb(39, 39, 39);")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.txt_login = QLineEdit(self.frame)
@@ -41,26 +49,22 @@ class Ui_Login(object):
         self.btn_entrar.setGeometry(QRect(170, 290, 161, 31))
         self.btn_entrar.setFont(font)
         self.btn_entrar.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_entrar.setStyleSheet(u"QPushButton{\n"
-"       \n"
-"       background-color: rgb(0, 0, 0);\n"
-"       color: rgb(255, 255, 255);\n"
-"       border-radius: 10px;\n"
+        self.btn_entrar.setStyleSheet(u"\n"
+"QPushButton{\n"
+"       color:rgb(255,255,255);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 "       \n"
-"       \n"
-"       background-color: rgb(255, 255, 255);\n"
-"       color: rgb(0, 0, 0);\n"
-"}")
+"       background-color: rgb(255,255,255);\n"
+"       color:rgb(0,0,0);\n"
+"}\n"
+"")
         self.label = QLabel(Login)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(180, 30, 201, 191))
-        self.label.setPixmap(QPixmap(r"estoque\pgs\user.png"))
+        self.label.setGeometry(QRect(180, 20, 201, 191))
+        self.label.setPixmap(QPixmap(r"Estoque\imgs\login.png"))
         self.label.setScaledContents(True)
-        self.label.raise_()
-        self.frame.raise_()
 
         self.retranslateUi(Login)
 
