@@ -6,6 +6,7 @@ import sys
 import subprocess
 import time as t
 from database import *
+import openpyxl
 
 class Login(QWidget,Ui_Login):
     def __init__(self):
@@ -68,6 +69,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             self.btn_tables.clicked.connect(self.show_table)
             self.btn_tables.clicked.connect(self.table_estoque)
             self.insert_saida.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_saida))
+            self.btn_saida.clicked.connect(self.cadastrar_venda)
 
     def subprocess_dash(self):
         subprocess.Popen(['streamlit', 'run', r'Estoque\dashs.py'])
@@ -93,18 +95,49 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         df = pd.read_excel('estoque.xlsx')
         values = df.values.tolist()
 
-        self.tb_estoque.clearContents()
-        self.tb_estoque.setRowCount(len(values))
-        self.tb_estoque.setColumnCount(len(df.columns))
+        self.td_estoque.clearContents()
+        self.td_estoque.setRowCount(len(values))
+        self.td_estoque.setColumnCount(len(df.columns))
 
-        self.tb_estoque.setHorizontalHeaderLabels(df.columns)
+        self.td_estoque.setHorizontalHeaderLabels(df.columns)
 
         for row_index, row_data in enumerate(values):
             for column_index, cell_data in enumerate(row_data):
-                self.tb_estoque.setItem(row_index, column_index, QTableWidgetItem(str(cell_data)))
+                self.td_estoque.setItem(row_index, column_index, QTableWidgetItem(str(cell_data)))
 
-    def extorno_table(self):
-        pass
+        for linha in range(1,6):
+            self.td_estoque.resizeColumnsToContents()
+
+    def cadastrar_venda(self):
+        produto = self.txt_produto.text()
+        quantidade = self.txt_quantidade.text()
+        data = self.txt_data.text()
+        preco = self.txt_preco.text()
+        vendas = self.txt_vendas.text()
+
+        # Carregar a planilha existente
+        arquivo = 'sales.xlsx'
+        panilha = openpyxl.load_workbook(arquivo)
+        folha = panilha.active
+
+        # Determinar a próxima linha disponível
+        proxima_linha = folha.max_row + 1
+
+        # Inserir dados nas colunas desejadas
+        folha.cell(column=12, row=proxima_linha, value=produto)  # Coluna L
+        folha.cell(column=3, row=proxima_linha, value=quantidade)  # Coluna C
+        folha.cell(column=7, row=proxima_linha, value=data)  # Coluna G
+        folha.cell(column=4, row=proxima_linha, value=preco)  # Coluna D
+        folha.cell(column=6, row=proxima_linha, value=vendas)  # Coluna F
+
+        # Salvar a planilha
+        panilha.save(arquivo)
+
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle('Cadastro Realizado')
+        msg.setText('Venda Cadastrada Com Sucesso')
+
 
     def cadastrar_produto(self):
         pass

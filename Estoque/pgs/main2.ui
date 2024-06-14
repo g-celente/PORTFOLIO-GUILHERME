@@ -14,11 +14,11 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255,255, 255);</string>
+   <string notr="true">background-color: rgb(76, 76, 76);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+   <layout class="QVBoxLayout" name="verticalLayout_10">
+    <item>
      <widget class="QFrame" name="frame">
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -26,7 +26,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <widget class="QPushButton" name="btn_home">
          <property name="styleSheet">
@@ -45,7 +45,7 @@ color: rgb(0, 0, 0);</string>
 background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>TABLES</string>
+          <string>VENDAS</string>
          </property>
         </widget>
        </item>
@@ -56,38 +56,28 @@ background-color: rgb(255, 255, 255);</string>
 background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
-          <string>CADASTRO</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_dashboards">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
-         </property>
-         <property name="text">
-          <string>DASHBOARDS</string>
+          <string>CADASTRO DE USUÁRIO</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item>
      <widget class="QStackedWidget" name="Pages">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(33, 130, 195);</string>
+       <string notr="true">background-color: rgb(39, 39, 39);
+</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="pg_table">
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout_11">
         <item>
          <widget class="QTabWidget" name="tabWidget">
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(33, 130, 195);</string>
+           <string notr="true">background-color: rgb(39, 39, 39);</string>
           </property>
           <property name="currentIndex">
            <number>0</number>
@@ -98,9 +88,6 @@ color: rgb(0, 0, 0);</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_2"/>
-            </item>
-            <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -110,42 +97,36 @@ color: rgb(0, 0, 0);</string>
                    <widget class="QLabel" name="label_3">
                     <property name="font">
                      <font>
-                      <pointsize>13</pointsize>
+                      <family>Segoe UI</family>
+                      <pointsize>19</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
                      </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">color: rgb(255, 255, 255);</string>
                     </property>
                     <property name="text">
-                     <string>ESTOQUE</string>
+                     <string>GERENCIAMENTO DO ESTOQUE</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
-                  </item>
-                  <item>
-                   <widget class="QTableWidget" name="tb_saida"/>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="label_2">
-                    <property name="font">
-                     <font>
-                      <pointsize>13</pointsize>
-                     </font>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color: rgb(255, 255, 255);</string>
-                    </property>
-                    <property name="text">
-                     <string>SAÍDA</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QTableWidget" name="tb_estoque"/>
                   </item>
                  </layout>
                 </item>
                 <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_6"/>
+                 <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <item>
+                   <widget class="QTableWidget" name="td_estoque">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -159,17 +140,17 @@ color: rgb(0, 0, 0);</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_4">
                  <item>
-                  <widget class="QPushButton" name="insert_saida">
+                  <widget class="QPushButton" name="insert_produto">
                    <property name="styleSheet">
                     <string notr="true">color: rgb(255, 255, 255);</string>
                    </property>
                    <property name="text">
-                    <string>Inserir Saída</string>
+                    <string>INSERIR PRODUTO</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="btn_extorno">
+                  <widget class="QPushButton" name="btn_excluir_produto">
                    <property name="maximumSize">
                     <size>
                      <width>131</width>
@@ -180,7 +161,7 @@ color: rgb(0, 0, 0);</string>
                     <string notr="true">color: rgb(255, 255, 255);</string>
                    </property>
                    <property name="text">
-                    <string>Extorno</string>
+                    <string>EXCLUIR PRODUTO</string>
                    </property>
                   </widget>
                  </item>
@@ -208,23 +189,86 @@ color: rgb(0, 0, 0);</string>
            <attribute name="title">
             <string>Tab 2</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_9">
+           <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QLabel" name="label_12">
-              <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);</string>
-              </property>
-              <property name="text">
-               <string>VENDAS</string>
-              </property>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <item>
+               <widget class="QLabel" name="label_12">
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>19</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>GERENCIAMENTO DAS SAÍDAS</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTableWidget" name="tb_saida">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
-             <widget class="QTableWidget" name="tableWidget_2">
-              <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);</string>
-              </property>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <item>
+               <widget class="QPushButton" name="insert_saida">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>INSERIR SAÍDA</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_extorno">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>EXTORNO</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_dashboards">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(255, 255, 255);</string>
+                </property>
+                <property name="text">
+                 <string>GERAR GRÁFICOS</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </item>
            </layout>
           </widget>
@@ -237,7 +281,7 @@ color: rgb(0, 0, 0);</string>
         <item>
          <widget class="QLabel" name="label">
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(33, 130, 195);
+           <string notr="true">background-color: rgb(39, 39, 39);
 color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
@@ -251,6 +295,14 @@ color: rgb(255, 255, 255);</string>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QLabel" name="label_4">
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>19</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
@@ -266,6 +318,11 @@ color: rgb(255, 255, 255);</string>
          <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
            <widget class="QLabel" name="label_5">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
@@ -275,7 +332,11 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="txt_nome"/>
+           <widget class="QLineEdit" name="txt_nome">
+            <property name="placeholderText">
+             <string>Digite o seu Nome:</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -283,6 +344,11 @@ color: rgb(255, 255, 255);</string>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
            <widget class="QLabel" name="label_6">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
@@ -292,7 +358,11 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="txt_usuario"/>
+           <widget class="QLineEdit" name="txt_usuario">
+            <property name="placeholderText">
+             <string>Seu nome de Usuário</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -300,6 +370,11 @@ color: rgb(255, 255, 255);</string>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
            <widget class="QLabel" name="label_7">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
@@ -309,7 +384,11 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="txt_senha"/>
+           <widget class="QLineEdit" name="txt_senha">
+            <property name="placeholderText">
+             <string>Digite sua Senha</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -317,6 +396,11 @@ color: rgb(255, 255, 255);</string>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
            <widget class="QLabel" name="label_8">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
@@ -326,7 +410,11 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="txt_senha2"/>
+           <widget class="QLineEdit" name="txt_senha2">
+            <property name="placeholderText">
+             <string>Repita a Senha Novamente</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -334,6 +422,11 @@ color: rgb(255, 255, 255);</string>
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
            <widget class="QLabel" name="label_9">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
@@ -344,6 +437,11 @@ color: rgb(255, 255, 255);</string>
           </item>
           <item>
            <widget class="QComboBox" name="cb_perfil">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
@@ -397,7 +495,10 @@ color: rgb(255, 255, 255);</string>
          <widget class="QLabel" name="label_13">
           <property name="font">
            <font>
-            <pointsize>15</pointsize>
+            <family>Segoe UI</family>
+            <pointsize>19</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="styleSheet">
