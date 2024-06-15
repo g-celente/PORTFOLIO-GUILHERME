@@ -59,17 +59,17 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         if user.lower() == 'Usuário':
             self.btn_pg_venda.setVisible(False)
         
-        else:
-            self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
-            self.btn_pg_venda.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_cadastro))
-            self.btn_tables.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_table))
-            self.btn_dashboards.clicked.connect(self.subprocess_dash)
-            self.btn_cadastro.clicked.connect(self.subscribe_user)
-            self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
-            self.btn_tables.clicked.connect(self.show_table)
-            self.btn_tables.clicked.connect(self.table_estoque)
-            self.insert_saida.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_saida))
-            self.btn_saida.clicked.connect(self.cadastrar_venda)
+        
+        self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
+        self.btn_pg_venda.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_cadastro))
+        self.btn_tables.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_table))
+        self.btn_dashboards.clicked.connect(self.subprocess_dash)
+        self.btn_cadastro.clicked.connect(self.subscribe_user)
+        self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
+        self.btn_tables.clicked.connect(self.show_table)
+        self.btn_tables.clicked.connect(self.table_estoque)
+        self.insert_saida.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_saida))
+        self.btn_saida.clicked.connect(self.cadastrar_venda)
 
     def subprocess_dash(self):
         subprocess.Popen(['streamlit', 'run', r'Estoque\dashs.py'])
@@ -114,6 +114,8 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         data = self.cb_data.text()
         preco = self.txt_preco.text()
         vazio = ''
+        df = pd.read_excel('estoque.xlsx') 
+        df_produtos = df['Produto']
 
         if produto == vazio or quantidade == vazio or preco == vazio:
             msg = QMessageBox()
@@ -123,13 +125,6 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             msg.exec()
             return None
         else:
-            df = pd.read_excel('estoque.xlsx') 
-            df_produtos = df['Produto']
-            produto_filtrado = df[df_produtos == produto]
-            quantidadeProduto = produto_filtrado['Quantidade'].values[0]
-            quantidade_estoque = int(quantidadeProduto)
-            quantidade = int(quantidade)
-
 
             if produto not in df_produtos.values:
                 msg = QMessageBox()
@@ -138,7 +133,13 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                 msg.setText('Produto Não Encontrado\nna Planilha de Estoque!')
                 msg.exec()
                 return None
-            elif quantidade > quantidade_estoque:
+            
+            produto_filtrado = df[df_produtos == produto]
+            quantidadeProduto = produto_filtrado['Quantidade'].values[0]
+            quantidade_estoque = int(quantidadeProduto)
+            quantidade = int(quantidade)
+
+            if quantidade > quantidade_estoque:
                 msg = QMessageBox()
                 msg.setIcon(QMessageBox.Warning)
                 msg.setWindowTitle('Falha na Quantidade')
@@ -185,22 +186,32 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             msg.exec()
             return None
         
-        name = self.txt_nome.text()
-        user = self.txt_usuario.text()
-        password = self.txt_senha.text()
-        access = self.cb_perfil.currentText()
-
-        db = Database()
-        db.connect()
-        db.insert_user(name,user,password,access)
-        db.close_connection()
-
-        msgs = QMessageBox()
-        msgs.setIcon(QMessageBox.Information)
-        msgs.setWindowTitle('Cadastrado Efetivado')
-        msgs.setText("Usuário Cadastrado")
-        msgs.exec()
-    
+        else:
+            name = self.txt_nome.text()
+            user = self.txt_usuario.text()
+            password = self.txt_senha.text()
+            access = self.cb_perfil.currentText()
+            
+            db = Database()
+            db.connect()
+            try:
+                db.insert_user(name,user,password,access)
+                msgs = QMessageBox()
+                msgs.setIcon(QMessageBox.Information)
+                msgs.setWindowTitle('Cadastrado Efetivado')
+                msgs.setText("Usuário Cadastrado")
+                msgs.exec()
+            except sqlite3.IntegrityError:
+                msg2 = QMessageBox()
+                msg2.setIcon(QMessageBox.Information)
+                msg2.setWindowTitle("Usuário Cadastrado")
+                msg2.setText(F"O Usuário {name} já Está Cadastrado!")
+                msg2.exec()
+                return None
+            finally:
+                db.close_connection()
+            
+        
 if __name__=='__main__':
     app = QApplication(sys.argv)
     window = Login()
