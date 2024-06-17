@@ -26,10 +26,10 @@ def print_figs(df):
         sales_by_product,
         title='Vendas Por Produtos',
         color_discrete_sequence=['#FF4B4B'],
-        x = 'Faturamento',
+        x='Faturamento',
         y=sales_by_product.index,
         width=500
-        )
+    )
     fig_sale_pie.update_layout(
         xaxis=dict(
             visible=False
@@ -44,30 +44,30 @@ def print_figs(df):
         values='Faturamento',
         width=500
     )
-    
 
     fig_sale_by_month = px.area(
         sales_by_month,
         title="Vendas Por Meses",
         color_discrete_sequence=["#FF4B4B"],
-        x = sales_by_month.index,
-        y= 'Faturamento',
-        )
+        x=sales_by_month.index,
+        y='Faturamento',
+    )
 
     fig_sale_by_product = px.bar(
         sales_by_product,
         title="Vendas por Produtos",
-        x= sales_by_product.index,
-        y = 'Faturamento',
+        x=sales_by_product.index,
+        y='Faturamento',
         width=500,
         color_discrete_sequence=["#FF4B4B"]
     )
 
+    # Gráfico de mapa coroplético
     fig_sales_in_maps = px.choropleth(
         df,
-        locations="Estado", 
-        locationmode="USA-states", 
-        color="Quantidade", 
+        locations="Estado",
+        locationmode="USA-states",
+        color="Vendas",
         scope="usa",
         template="plotly_dark",
         width=1150
@@ -75,12 +75,11 @@ def print_figs(df):
     fig_sales_in_maps.update_geos(fitbounds="locations", visible=True)
     fig_sales_in_maps.update_layout(
         title="Vendas Nos Estados Unidos",
-        geo=dict(bgcolor= 'rgba(0,0,0,0)', lakecolor="#1f242d"),
-        margin={"r":0,"t":25,"l":0,"b":0},
+        geo=dict(bgcolor='rgba(0,0,0,0)', lakecolor="#1f242d"),
+        margin={"r": 0, "t": 25, "l": 0, "b": 0},
         paper_bgcolor="#1f242d",
         plot_bgcolor="#1f242d",
     )
-
 
     col1, col2 = st.columns(2)
     col1.plotly_chart(fig_sale_by_month)
@@ -89,7 +88,6 @@ def print_figs(df):
     col3.plotly_chart(fig_sale_pie)
     col4.plotly_chart(fig_sale)
     st.plotly_chart(fig_sales_in_maps)
-
 
 def main (df):
     st.set_page_config(
@@ -102,7 +100,7 @@ def main (df):
     st.header(":bar_chart: Dashboard Faturamento Total")
 
     month = st.sidebar.multiselect(
-        key= 1,
+        key=1,
         label='Mês',
         options=df['Mes'].unique().tolist(),
         default=df['Mes'].unique().tolist()
@@ -110,7 +108,7 @@ def main (df):
 
     df = df.query("Mes == @month")
 
-    total_sales = round(sum_sales(df),2)
+    total_sales = round(sum_sales(df), 2)
     total_vendas = total_quantity(df)
 
     col1, col2 = st.columns(2)
@@ -124,6 +122,7 @@ def main (df):
     st.markdown("""---""")
 
     print_figs(df)
+
 
 
 if __name__ == '__main__':

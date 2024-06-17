@@ -58,6 +58,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
         if user.lower() == 'Usuário':
             self.btn_pg_venda.setVisible(False)
+            self.insert_produto.setVisible(False)
         
         
         self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
@@ -68,12 +69,70 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         self.btn_home.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_home))
         self.btn_tables.clicked.connect(self.show_table)
         self.btn_tables.clicked.connect(self.table_estoque)
-        self.insert_saida.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_inserir_saida))
-        self.btn_saida.clicked.connect(self.cadastrar_venda)
+        self.insert_saida.clicked.connect(self.subprocess_cadastro)
+        self.btn_extorno.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_extorno))
+        self.btn_saida.clicked.connect(self.estorno)
+        self.insert_produto.clicked.connect(lambda: self.Pages.setCurrentWidget(self.pg_cadastro_produto))
+        self.btn_cadastro_produto.clicked.connect(self.cadastrar_produto)
 
     def subprocess_dash(self):
         subprocess.Popen(['streamlit', 'run', r'Estoque\dashs.py'])
+    
+    def subprocess_cadastro(self):
+        subprocess.Popen(['python', r'Cadastro\teste.py'])
+    
+    def message_Warning(self,texto, mensagem):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+        msg.setWindowTitle(texto)
+        msg.setText(mensagem)
+        msg.exec()
 
+    def message_Information(self, texto,mensagem):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle(texto)
+        msg.setText(mensagem)
+        msg.exec()
+
+    def estorno(self):
+        pedido = self.txt_pedido_extorno.text()
+        quantidade_extorno = self.txt_quantidade_extorno.text()
+        vazio = ''
+
+        if pedido == vazio or quantidade_extorno == vazio:
+            self.message_Warning('Erro', 'Por Favor, insira todos os campos')
+            return None
+
+        df_sales = pd.read_excel('sales.xlsx')
+        df_estoque = pd.read_excel('estoque.xlsx')
+
+        # Localiza a venda a ser estornada
+        venda_filtrada = df_sales[df_sales['Pedido'] == int(pedido)]
+
+        if venda_filtrada.empty:
+            self.message_Warning('Erro', 'Pedido não encontrado no estoque')
+            return None
+
+        quantidadePedido = venda_filtrada['Quantidade'].values[0]
+        quantidade = int(quantidade_extorno)
+
+        if quantidade > quantidadePedido:
+            self.message_Warning('Erro', 'A quantidade inserida é maior\n que a quantidade do pedido')
+            return None
+
+        produto = venda_filtrada['Produto'].values[0]
+        df_estoque.loc[df_estoque['Produto'] == produto, 'Quantidade'] += quantidade
+
+        if quantidade == quantidadePedido:
+            df_sales = df_sales[df_sales['Pedido'] != int(pedido)]
+        else:
+            df_sales.loc[df_sales['Pedido'] == int(pedido), 'Quantidade'] -= quantidade
+            
+        df_sales.to_excel('sales.xlsx', index=False)
+        df_estoque.to_excel('estoque.xlsx', index=False)
+
+        self.message_Information('Estorno Realizado', 'Extorno Realizado com Sucesso!')
     
     def show_table(self):
         df = pd.read_excel('sales.xlsx')
@@ -91,7 +150,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             for column_index, cell_data in enumerate(row_data):
                 self.tb_saida.setItem(row_index, column_index, QTableWidgetItem(str(cell_data)))
 
-    def table_estoque(self):
+    def table_estoque(self, tableview):
         df = pd.read_excel('estoque.xlsx')
         values = df.values.tolist()
 
@@ -108,82 +167,41 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         for linha in range(1,6):
             self.td_estoque.resizeColumnsToContents()
 
-    def cadastrar_venda(self):
-        produto = self.txt_produto.text().capitalize()
-        quantidade = self.txt_quantidade.text()
-        data = self.cb_data.text()
-        preco = self.txt_preco.text()
+    def cadastrar_produto(self):
+        df_estoque = pd.read_excel('estoque.xlsx')
+        df_produtos = df_estoque['Produto']
+        df_produtos.values.tolist()
+        codigo = self.txt_codigo.text()
+        produto = self.txt_produto_estoque.text()
+        quantidade_estoque = self.txt_quantidade_estoque.text()
+        preco_unico = self.txt_preco_unico.text()
         vazio = ''
-        df = pd.read_excel('estoque.xlsx') 
-        df_produtos = df['Produto']
 
-        if produto == vazio or quantidade == vazio or preco == vazio:
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Warning)
-            msg.setWindowTitle('Valores Inseridos')
-            msg.setText('Por Favor, Informe todos os Valores!')
-            msg.exec()
+        if codigo == vazio or produto == vazio or quantidade_estoque == vazio or preco_unico == vazio:
+            self.message_Warning('Erro', 'Por favor, insira todos os valores!')
             return None
-        else:
-
-            if produto not in df_produtos.values:
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Warning)
-                msg.setWindowTitle('Produto Inválido')
-                msg.setText('Produto Não Encontrado\nna Planilha de Estoque!')
-                msg.exec()
+        
+        else: 
+            if produto in df_produtos.values:
+                self.message_Warning('Erro', 'Produto já está cadastrado no sistema!')
                 return None
             
-            produto_filtrado = df[df_produtos == produto]
-            quantidadeProduto = produto_filtrado['Quantidade'].values[0]
-            quantidade_estoque = int(quantidadeProduto)
-            quantidade = int(quantidade)
-
-            if quantidade > quantidade_estoque:
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Warning)
-                msg.setWindowTitle('Falha na Quantidade')
-                msg.setText(f'Quantidade em Estoque do {produto} em Falta! ')
-                msg.exec()
-                return None
-            else:
-                df.loc[df['Produto'] == produto, 'Quantidade'] -= quantidade
-                
-                df.to_excel('estoque.xlsx', index=False)
-
-                arquivo = 'sales.xlsx'
-                panilha = openpyxl.load_workbook(arquivo)
-                folha = panilha.active
-
-                
-                proxima_linha = folha.max_row + 1
-
-                
-                folha.cell(column=11, row=proxima_linha, value=produto)  
-                folha.cell(column=3, row=proxima_linha, value=quantidade) 
-                folha.cell(column=6, row=proxima_linha, value=data)  
-                folha.cell(column=4, row=proxima_linha, value=preco)  
-
-                panilha.save(arquivo)
-
-                msg = QMessageBox()
-                msg.setIcon(QMessageBox.Information)
-                msg.setWindowTitle('Cadastro Realizado')
-                msg.setText('Venda Cadastrada Com Sucesso')
-                msg.exec()
-
-
-    def cadastrar_produto(self):
-        pass
+            arquivo = 'estoque.xlsx'
+            workbook = openpyxl.load_workbook(arquivo)
+            folha = workbook.active
+            quantidade = int(quantidade_estoque)
+            preco = int(preco_unico)
+            faturamento = quantidade*preco
+            info_produto = [codigo,produto,quantidade,preco, faturamento]
+            folha.append(info_produto)
+            workbook.save(arquivo)
+            self.message_Information('Sucesso', 'Produto cadastrado com Sucesso!')
+            
 
     def subscribe_user(self):
 
         if self.txt_senha.text() != self.txt_senha2.text():
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Warning)
-            msg.setWindowTitle("Senhas Diferentes")
-            msg.setText("A senha não é igual")
-            msg.exec()
+            self.message_Warning('Senhas diferentes', 'As senhas não são iguais!')
             return None
         
         else:
@@ -195,19 +213,10 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             db = Database()
             db.connect()
             try:
-                db.insert_user(name,user,password,access)
-                msgs = QMessageBox()
-                msgs.setIcon(QMessageBox.Information)
-                msgs.setWindowTitle('Cadastrado Efetivado')
-                msgs.setText("Usuário Cadastrado")
-                msgs.exec()
+                db.insert_user(name, user, password, access)
+                self.message_Information('Cadastro Efetivado', 'Cadastro Realizado com Sucesso!')
             except sqlite3.IntegrityError:
-                msg2 = QMessageBox()
-                msg2.setIcon(QMessageBox.Information)
-                msg2.setWindowTitle("Usuário Cadastrado")
-                msg2.setText(F"O Usuário {name} já Está Cadastrado!")
-                msg2.exec()
-                return None
+                self.message_Information('Usuário Cadastrado', f'O Usuário {name} já está cadastrado!')
             finally:
                 db.close_connection()
             

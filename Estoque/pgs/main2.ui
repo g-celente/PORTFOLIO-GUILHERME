@@ -70,7 +70,7 @@ background-color: rgb(255, 255, 255);</string>
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="pg_table">
        <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -292,7 +292,7 @@ QPushButton:hover{
 </string>
                 </property>
                 <property name="text">
-                 <string>EXTORNO</string>
+                 <string>ESTORNO</string>
                 </property>
                </widget>
               </item>
@@ -340,6 +340,215 @@ QPushButton:hover{
            </layout>
           </widget>
          </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pg_cadastro_produto">
+       <layout class="QVBoxLayout" name="verticalLayout_15">
+        <item>
+         <widget class="QLabel" name="label_17">
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>23</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>CADASTRAR PRODUTO</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_18">
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <pointsize>13</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>Cadastro de produto</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_22">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>Código</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txt_codigo">
+            <property name="styleSheet">
+             <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_14">
+          <item>
+           <widget class="QLabel" name="label_23">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>Produto</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txt_produto_estoque">
+            <property name="styleSheet">
+             <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_15">
+          <item>
+           <widget class="QLabel" name="label_24">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>Quantidade</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txt_quantidade_estoque">
+            <property name="styleSheet">
+             <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_17">
+          <item>
+           <widget class="QLabel" name="label_25">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>Preço Único</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="txt_preco_unico">
+            <property name="styleSheet">
+             <string notr="true">color:rgb(255,255,255);
+border-bottom:1px solid white;
+border-radius: None;
+</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_18">
+          <item>
+           <widget class="QLabel" name="label_26">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_cadastro_produto">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+QPushButton{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	
+	background-color: rgb(255,255,255);
+	color:rgb(0,0,0);
+}
+</string>
+            </property>
+            <property name="text">
+             <string>CADASTRAR PRODUTO</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -638,7 +847,7 @@ QPushButton:hover{
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="pg_inserir_saida">
+      <widget class="QWidget" name="pg_extorno">
        <layout class="QVBoxLayout" name="verticalLayout_14">
         <item>
          <widget class="QLabel" name="label_21">
@@ -652,7 +861,7 @@ QPushButton:hover{
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TELA DE CADASTRO DE VENDAS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TELA DE EXTORNO DE VENDAS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -670,7 +879,7 @@ QPushButton:hover{
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
-           <string>INSERIR SAÍDA</string>
+           <string>REALIZAR EXTORNO</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -693,42 +902,12 @@ QPushButton:hover{
                <string notr="true">color: rgb(255, 255, 255);</string>
               </property>
               <property name="text">
-               <string>Produto:</string>
+               <string>Pedido</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="txt_produto">
-              <property name="styleSheet">
-               <string notr="true">color:rgb(255,255,255);
-border-bottom:1px solid white;
-border-radius: None;
-</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_14">
-            <item>
-             <widget class="QLabel" name="label_17">
-              <property name="font">
-               <font>
-                <family>Segoe UI</family>
-                <pointsize>15</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: rgb(255, 255, 255);</string>
-              </property>
-              <property name="text">
-               <string>Preco:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="txt_preco">
+             <widget class="QLineEdit" name="txt_pedido_extorno">
               <property name="styleSheet">
                <string notr="true">color:rgb(255,255,255);
 border-bottom:1px solid white;
@@ -758,7 +937,7 @@ border-radius: None;
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="txt_quantidade">
+             <widget class="QLineEdit" name="txt_quantidade_extorno">
               <property name="styleSheet">
                <string notr="true">color:rgb(255,255,255);
 border-bottom:1px solid white;
@@ -794,7 +973,7 @@ border-radius: None;
              </widget>
             </item>
             <item>
-             <widget class="QDateEdit" name="dateEdit">
+             <widget class="QDateEdit" name="txt_data_extorno">
               <property name="sizePolicy">
                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -841,6 +1020,11 @@ border-radius: None;
           </item>
           <item>
            <widget class="QPushButton" name="btn_saida">
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">
 QPushButton{
@@ -855,7 +1039,7 @@ QPushButton:hover{
 </string>
             </property>
             <property name="text">
-             <string>CADASTRAR SAÍDA</string>
+             <string>SOLICITAR EXTORNO</string>
             </property>
            </widget>
           </item>
