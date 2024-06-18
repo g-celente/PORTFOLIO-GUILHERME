@@ -383,4 +383,3 @@ carregar_planilha()
 
 if __name__ == '__main__':
     root.mainloop()
-    set_theme('dark')

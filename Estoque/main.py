@@ -107,8 +107,11 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         df_sales = pd.read_excel('sales.xlsx')
         df_estoque = pd.read_excel('estoque.xlsx')
 
-        # Localiza a venda a ser estornada
-        venda_filtrada = df_sales[df_sales['Pedido'] == int(pedido)]
+        try:
+            venda_filtrada = df_sales[df_sales['Pedido'] == int(pedido)]
+        except:
+            self.message_Warning('Erro', 'Por favor insira números inteiros no pedido')
+            return None
 
         if venda_filtrada.empty:
             self.message_Warning('Erro', 'Pedido não encontrado no estoque')
@@ -125,9 +128,17 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         df_estoque.loc[df_estoque['Produto'] == produto, 'Quantidade'] += quantidade
 
         if quantidade == quantidadePedido:
-            df_sales = df_sales[df_sales['Pedido'] != int(pedido)]
+            try:
+                df_sales = df_sales[df_sales['Pedido'] != int(pedido)]
+            except:
+                self.message_Warning('Erro', 'Por favor insira números inteiros no pedido')
+                return None
         else:
-            df_sales.loc[df_sales['Pedido'] == int(pedido), 'Quantidade'] -= quantidade
+            try:
+                df_sales.loc[df_sales['Pedido'] == int(pedido), 'Quantidade'] -= quantidade
+            except:
+                self.message_Warning('Erro', 'Por favor insira números inteiros no pedido')
+                return None
             
         df_sales.to_excel('sales.xlsx', index=False)
         df_estoque.to_excel('estoque.xlsx', index=False)
@@ -150,7 +161,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             for column_index, cell_data in enumerate(row_data):
                 self.tb_saida.setItem(row_index, column_index, QTableWidgetItem(str(cell_data)))
 
-    def table_estoque(self, tableview):
+    def table_estoque(self):
         df = pd.read_excel('estoque.xlsx')
         values = df.values.tolist()
 
@@ -189,8 +200,14 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             arquivo = 'estoque.xlsx'
             workbook = openpyxl.load_workbook(arquivo)
             folha = workbook.active
-            quantidade = int(quantidade_estoque)
-            preco = int(preco_unico)
+
+            try:
+                quantidade = int(quantidade_estoque)
+                preco = int(preco_unico)
+            except:
+                self.message_Warning('Erro', 'Por favor, insira números inteiros na Quantidade e Preço')
+                return None
+            
             faturamento = quantidade*preco
             info_produto = [codigo,produto,quantidade,preco, faturamento]
             folha.append(info_produto)
