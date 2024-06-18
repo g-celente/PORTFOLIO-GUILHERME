@@ -25,6 +25,9 @@ def verificar_input(dados):
     return True
 
 def cadastrar_produto():
+    df = pd.read_excel('sales.xlsx')
+    df_codigo = df['Pedido']
+
 
     try:
         dia=int(dia_combobox.get())
@@ -55,6 +58,11 @@ def cadastrar_produto():
 
     try:
         codigo = int(codigo_entry.get())
+
+        if codigo in df_codigo.values:
+            messagebox.showerror('Erro', 'Código já está cadastrado no Sistema')
+            return None
+        
         if codigo <= 0:
             raise ValueError("Por favor, digite um código válido.")
     except ValueError:

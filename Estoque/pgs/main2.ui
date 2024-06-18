@@ -861,7 +861,7 @@ QPushButton:hover{
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TELA DE EXTORNO DE VENDAS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;TELA DE ESTORNO DE VENDAS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -879,7 +879,7 @@ QPushButton:hover{
            <string notr="true">color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
-           <string>REALIZAR EXTORNO</string>
+           <string>REALIZAR ESTORNO</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1039,7 +1039,7 @@ QPushButton:hover{
 </string>
             </property>
             <property name="text">
-             <string>SOLICITAR EXTORNO</string>
+             <string>SOLICITAR ESTORNO</string>
             </property>
            </widget>
           </item>
