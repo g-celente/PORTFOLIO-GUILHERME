@@ -6,7 +6,6 @@ from datetime import date
 import pandas as pd
 data_atual = date.today()
 
-
 def atualizar_combobox(event):
 
     produto_selecionado = produto_combobox.get()   
@@ -191,7 +190,7 @@ def carregar_planilha():
     treeview['columns'] = lista_valores[0]
     for col in lista_valores[0]:
         treeview.heading(col, text=col)
-        treeview.column(col, width=100)
+        treeview.column(col, width=40)
     
     for row in lista_valores[1:]:
         if all(cell is not None for cell in row):
@@ -382,5 +381,6 @@ scrolly.config(command=treeview.yview)
 scrollx.config(command=treeview.xview)
 carregar_planilha()
 
-
-root.mainloop()
+if __name__ == '__main__':
+    root.mainloop()
+    set_theme('dark')
