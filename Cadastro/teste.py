@@ -3,8 +3,8 @@ import tkinter as tk
 import openpyxl
 from tkinter import messagebox
 from datetime import date
-import pandas as pd
 data_atual = date.today()
+
 
 def atualizar_combobox(event):
 
@@ -25,9 +25,6 @@ def verificar_input(dados):
     return True
 
 def cadastrar_produto():
-    df = pd.read_excel('sales.xlsx')
-    df_codigo = df['Pedido']
-
 
     try:
         dia=int(dia_combobox.get())
@@ -58,15 +55,10 @@ def cadastrar_produto():
 
     try:
         codigo = int(codigo_entry.get())
-
-        if codigo in df_codigo.values:
-            messagebox.showerror('Erro', 'Código já está cadastrado no Sistema')
-            return None
-        
         if codigo <= 0:
             raise ValueError("Por favor, digite um código válido.")
     except ValueError:
-        messagebox.showerror("Input Error", "Por favor, insira um valor válido para Código.")
+        messagebox.showerror("Input Error", "Por favor, insira Código válido.")
         return
 
     try:
@@ -74,7 +66,7 @@ def cadastrar_produto():
         if quantidade <= 0:
             raise ValueError("Por favor, digite uma quantidade válida.")
     except ValueError:
-        messagebox.showerror("Input Error", "Por favor, insira um valor válido para quantidade.")
+        messagebox.showerror("Input Error", "Por favor, insira uma quantidade válida.")
         return
 
     try:
@@ -82,7 +74,7 @@ def cadastrar_produto():
         if preco <= 0:
             raise ValueError("Por favor, digite um preço válido.")
     except ValueError:
-        messagebox.showerror("Input Error", "Por favor, insira um valor válido para o Preço.")
+        messagebox.showerror("Input Error", "Por favor, insira um Preço válido.")
         return
 
     try:
@@ -94,16 +86,16 @@ def cadastrar_produto():
         return
 
     try:
-        cep = int(cep_entry.get())
-        if cep <= 0:
-            raise ValueError("Por favor, digite um CEP válido.")
+        vendas = float(vendas_entry.get())
+        if vendas < 0:
+            raise ValueError("Por favor, digite um valor de vendas válido.")
     except ValueError:
-        messagebox.showerror("Input Error", "Por favor, insira um valor válido para o CEP.")
+        messagebox.showerror("Input Error", "Por favor, insira um valor válido para as Vendas.")
         return
 
     try:
         status = status_combobox.get()
-        if status=='':
+        if status=='' or status not in statuses:
             raise ValueError
     except:
         messagebox.showerror('Input Error','Por favor, insira um valor válido para Status')
@@ -111,20 +103,36 @@ def cadastrar_produto():
 
     try:
         produto = produto_combobox.get()
-        if produto=='':
+        if produto=='' or produto not in veiculos:
             raise ValueError
     except:
-        messagebox.showerror('Input Error','Por favor, insira um valor válido para o Produto')
+        messagebox.showerror('Input Error','Por favor, insira um veículo válido')
         return
     
     try:
         modelo = modelo_combobox.get()
-        if modelo == '':
+        if modelo == '' or modelo not in codigos_por_veiculo.get(produto_combobox.get()  , ['']):
             raise ValueError
     except:
         messagebox.showerror('Input Error','Por favor, insira um valor válido para o Modelo do veículo')
         return
+
+    try:
+        tamanho = tamanho_combobox.get()
+        if tamanho=='' or tamanho not in tamanho_por_veiculo.get(produto_combobox.get()  , ['']):
+            raise ValueError
+    except:
+        messagebox.showerror('Input Error','Por favor, insira um valor válido para o Tamanho do veículo')
+        return
     
+    try:
+        cep = int(cep_entry.get())
+        if cep <= 0:
+            raise ValueError("Por favor, digite um CEP válido.")
+    except ValueError:
+        messagebox.showerror("Input Error", "Por favor, insira um CEP válido.")
+        return
+       
     try:
         estado = estado_combobox.get()
         if estado=='':
@@ -133,13 +141,7 @@ def cadastrar_produto():
         messagebox.showerror('Input Error','Por favor, insira um valor válido para o seu Estado')
         return
     
-    try:
-        tamanho = tamanho_combobox.get()
-        if tamanho=='':
-            raise ValueError
-    except:
-        messagebox.showerror('Input Error','Por favor, insira um valor válido para o Tamanho do veículo')
-        return
+
 
     # dados=[data,codigo,quantidade,preco,num,vendas,status,produto,modelo,estado,cep,tamanho]
     # for i in dados:
@@ -147,27 +149,15 @@ def cadastrar_produto():
     #         messagebox.showerror("Input Error", "Todos os campos devem ser preenchidos.")
     #         return
 
-    df = pd.read_excel('estoque.xlsx') 
-    df_produtos = df['Produto']   
-    produto_filtrado = df[df_produtos == produto]
-    quantidadeProduto = produto_filtrado['Quantidade'].values[0]
-    quantidade_estoque = int(quantidadeProduto)
-    quantidade = int(quantidade)
 
-    if quantidade > quantidade_estoque:
-        messagebox.showerror('Produto no Estoque',f'Estoque do {produto} em falta!')
-        return None
-    else:
-        df.loc[df['Produto'] == produto, 'Quantidade'] -= quantidade    
-        df.to_excel('estoque.xlsx', index=False)
 
          
     planilha='sales.xlsx'
     workbook = openpyxl.load_workbook(planilha)
     folha = workbook.active 
     id_prod=folha.max_row - 1
-    faturamento = quantidade*preco
-    info_produto=[id_prod,codigo,quantidade,preco,num,data,status,quarter,mes_nome,ano,produto,modelo,estado,cep,'EUA',tamanho, faturamento, faturamento]
+    faturamento = quantidade*preco 
+    info_produto=[id_prod,codigo,quantidade,preco,num,vendas,data,status,quarter,mes_nome,ano,produto,modelo,estado,cep,'EUA',tamanho,faturamento]
     folha.append(info_produto)
     workbook.save(planilha)
     messagebox.showinfo('Cadastro de venda','Venda cadastrada com sucesso!')
@@ -180,13 +170,14 @@ def cadastrar_produto():
     quantidade_spinbox.delete('0','end')
     preco_entry.delete('0','end')
     num_entry.delete('0','end')
+    vendas_entry.delete('0','end')
     cep_entry.delete('0','end')
     status_combobox.set('')
     produto_combobox.set('')
     modelo_combobox.set('')
     estado_combobox.set('')
     tamanho_combobox.set('')
-            
+
 
 def carregar_planilha():
     planilha='sales.xlsx'
@@ -198,7 +189,7 @@ def carregar_planilha():
     treeview['columns'] = lista_valores[0]
     for col in lista_valores[0]:
         treeview.heading(col, text=col)
-        treeview.column(col, width=40)
+        treeview.column(col, width=45)
     
     for row in lista_valores[1:]:
         if all(cell is not None for cell in row):
@@ -210,10 +201,10 @@ def finalizar():
 
 
 
-
+    
 root = tk.Tk()
-# root.tk.call('source', "azure.tcl")
-# root.tk.call('set_theme','light')
+root.tk.call('source', r"Cadastro\azure.tcl")
+root.tk.call('set_theme','dark')
 root.title('Painel de vendas')
 root.geometry('1920x1080')
 frame = ttk.Frame(root)
@@ -221,8 +212,8 @@ frame.pack()
 
 
 # QUADRANTE PARA AS INFORMACOES DO PEDIDO
-input_frame = ttk.LabelFrame(frame, text='Cadastro de venda',height=1080)
-input_frame.grid(row=0, column=0,padx=20,pady=100)
+input_frame = ttk.LabelFrame(frame, text='Cadastro de venda')
+input_frame.grid(row=0, column=0,padx=10,pady=40)
 input_frame.pack_propagate(False)
 
 sy=ttk.Scrollbar(input_frame)
@@ -254,6 +245,13 @@ num_entry=ttk.Entry(input_frame)
 ttk.Label(input_frame, text='Número do produto:').grid(row=3,column=0)  
 num_entry.grid(row=3, column=1, sticky='ew',padx=5,pady=10)
 
+
+# ENTRY CAIXA DE TEXTO PARA VENDAS (NO DIA)
+vendas_entry=ttk.Entry(input_frame)
+ttk.Label(input_frame, text='Vendas diárias:').grid(row=4,column=0)
+vendas_entry.grid(row=4, column=1, sticky='ew',padx=5,pady=10)
+
+veiculos=['Motorcycles','Classic Cars','Trucks and Buses','Vintage Cars','Planes','Ships','Trains']
 
 atributo_mes = {
     '1': ['Jan','1'],
@@ -375,6 +373,7 @@ sair.grid(row=12, column=1, sticky='nsew',padx=5,pady=15)
 frame_vendas = ttk.Frame(frame)
 frame_vendas.grid(row=0,column=1,pady=10)
 
+
 scrolly = ttk.Scrollbar(frame_vendas,orient='vertical')
 scrolly.pack(side='right',fill='y')
 
@@ -384,10 +383,10 @@ scrollx.pack(side='bottom',fill='x')
 # SEÇÃO DE VENDAS
 colunas = ('ID', 'Pedido', 'Quantidade', 'Preço', 'Numero do Produto', 'Vendas','Data', 'Status', 'Quarter', 'Mês', 'Ano', 'Produto', 'Código do Produto', 'Estado', 'Código Postal', 'Pais', 'Tamanho', 'Faturamento')
 treeview=ttk.Treeview(frame_vendas, show='headings', yscrollcommand=scrolly.set, xscrollcommand=scrollx.set, columns=colunas, height=28)
-treeview.pack(side='left')
+treeview.pack()
 scrolly.config(command=treeview.yview)
 scrollx.config(command=treeview.xview)
 carregar_planilha()
 
-if __name__ == '__main__':
-    root.mainloop()
+
+root.mainloop()
