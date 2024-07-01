@@ -3,7 +3,7 @@ import numpy as np
 import plotly_express as px
 import streamlit as st
 
-df = pd.read_excel('sales.xlsx')
+df = pd.read_excel(r'sales\sales.xlsx')
 
 def sum_sales(dataframe):
     total_sales = dataframe['Faturamento'].sum()

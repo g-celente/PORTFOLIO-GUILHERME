@@ -76,10 +76,10 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         self.btn_cadastro_produto.clicked.connect(self.cadastrar_produto)
 
     def subprocess_dash(self):
-        subprocess.Popen(['streamlit', 'run', r'Estoque\dashs.py'])
+        subprocess.Popen(['streamlit', 'run', r'sales\Estoque\dashs.py'])
     
     def subprocess_cadastro(self):
-        subprocess.Popen(['python', r'Cadastro\teste.py'])
+        subprocess.Popen(['python', r'sales\Cadastro\teste.py'])
     
     def message_Warning(self,texto, mensagem):
         msg = QMessageBox()
@@ -104,8 +104,8 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             self.message_Warning('Erro', 'Por Favor, insira todos os campos')
             return None
 
-        df_sales = pd.read_excel('sales.xlsx')
-        df_estoque = pd.read_excel('estoque.xlsx')
+        df_sales = pd.read_excel(r'sales\sales.xlsx')
+        df_estoque = pd.read_excel(r'sales\estoque.xlsx')
 
         try:
             venda_filtrada = df_sales[df_sales['Pedido'] == int(pedido)]
@@ -140,13 +140,13 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                 self.message_Warning('Erro', 'Por favor insira números inteiros no pedido')
                 return None
             
-        df_sales.to_excel('sales.xlsx', index=False)
-        df_estoque.to_excel('estoque.xlsx', index=False)
+        df_sales.to_excel(r'sales\sales.xlsx', index=False)
+        df_estoque.to_excel(r'sales\estoque.xlsx', index=False)
 
         self.message_Information('Estorno Realizado', 'Extorno Realizado com Sucesso!')
     
     def show_table(self):
-        df = pd.read_excel('sales.xlsx')
+        df = pd.read_excel(r'sales\sales.xlsx')
         colunas_desejadas = ['Pedido', 'Quantidade', 'Produto', 'Preco', 'Faturamento', 'Data']
         df = df[colunas_desejadas]
         values = df.values.tolist() 
@@ -162,7 +162,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                 self.tb_saida.setItem(row_index, column_index, QTableWidgetItem(str(cell_data)))
 
     def table_estoque(self):
-        df = pd.read_excel('estoque.xlsx')
+        df = pd.read_excel(r'sales\estoque.xlsx')
         values = df.values.tolist()
 
         self.td_estoque.clearContents()
@@ -179,7 +179,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
             self.td_estoque.resizeColumnsToContents()
 
     def cadastrar_produto(self):
-        df_estoque = pd.read_excel('estoque.xlsx')
+        df_estoque = pd.read_excel(r'sales\estoque.xlsx')
         df_produtos = df_estoque['Produto']
         df_produtos.values.tolist()
         codigo = self.txt_codigo.text()
@@ -197,7 +197,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                 self.message_Warning('Erro', 'Produto já está cadastrado no sistema!')
                 return None
             
-            arquivo = 'estoque.xlsx'
+            arquivo = r'sales\estoque.xlsx'
             workbook = openpyxl.load_workbook(arquivo)
             folha = workbook.active
 

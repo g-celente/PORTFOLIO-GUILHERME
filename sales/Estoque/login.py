@@ -63,7 +63,7 @@ class Ui_Login(object):
         self.label = QLabel(Login)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(180, 20, 201, 191))
-        self.label.setPixmap(QPixmap(r"Estoque\imgs\login.png"))
+        self.label.setPixmap(QPixmap(r"sales\Estoque\imgs\login.png"))
         self.label.setScaledContents(True)
 
         self.retranslateUi(Login)
