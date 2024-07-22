@@ -4,6 +4,7 @@ import streamlit as st
 import plotly_express as px
 from api import start_data_collection
 import threading
+from datetime import date
 
 class Dashs:
     def __init__(self):
@@ -12,10 +13,12 @@ class Dashs:
     def get_df(self):
         conn = self.db.get_connection()
         self.df = pd.read_sql("SELECT * FROM coins", conn)
+        # Garantir que a coluna 'data' seja do tipo datetime
+        self.df['data'] = pd.to_datetime(self.df['data'])
         return self.df
 
-    def show_graph(self):
-        df_moeda = self.df[self.df['moeda'] == 'Dolar']
+    def show_graph(self, df):
+        df_moeda = df[df['moeda'] == 'Dolar']
 
         fig_dolar = px.area(
             df_moeda,
@@ -25,7 +28,7 @@ class Dashs:
             y='cotação'
         )
 
-        df_euro = self.df[self.df['moeda'] == 'Euro']
+        df_euro = df[df['moeda'] == 'Euro']
 
         fig_euro = px.area(
             df_euro,
@@ -51,27 +54,40 @@ def main():
 
     st.header(":bar_chart: Cotação das Moedas")
 
-    month = st.sidebar.multiselect(
-        key=1,
-        label='Data',
-        options=df['data'].unique().tolist(),
-        default=df['data'].unique().tolist()
+    # Seleção de data na barra lateral
+    selected_date = st.sidebar.date_input(
+        label='Selecione a data',
+        value=date.today()
     )
 
-    cotacao_dolar = df[df['moeda'] == 'Dolar']
-    cotacao_euro = df[df['moeda'] == 'Euro']
+    # Filtrando o DataFrame pela data selecionada
+    df_filtered = df[df['data'] == pd.to_datetime(selected_date)]
 
-    col1, col2 = st.columns(2)
+    if df_filtered.empty:
+        st.write("Nenhum dado disponível para a data selecionada.")
+    else:
+        cotacao_dolar = df_filtered[df_filtered['moeda'] == 'Dolar']
+        cotacao_euro = df_filtered[df_filtered['moeda'] == 'Euro']
 
-    with col1:
-        st.markdown('Cotação Dólar')
-        st.header(f"$ {cotacao_dolar['cotação'].values[0]}")
-    with col2:
-        st.markdown('Cotação Euro')
-        st.header(f":orange[{cotacao_euro['cotação'].values[0]}]")
-    st.markdown("""---""")
+        col1, col2 = st.columns(2)
 
-    dashs.show_graph()
+        with col1:
+            st.markdown('Cotação Dólar')
+            if not cotacao_dolar.empty:
+                st.header(f"$ {cotacao_dolar['cotação'].values[0]}")
+            else:
+                st.header("Sem dados")
+
+        with col2:
+            st.markdown('Cotação Euro')
+            if not cotacao_euro.empty:
+                st.header(f":orange[{cotacao_euro['cotação'].values[0]}]")
+            else:
+                st.header("Sem dados")
+
+        st.markdown("""---""")
+
+        dashs.show_graph(df_filtered)
 
 if __name__ == "__main__":
     # Iniciar o thread para coleta de dados

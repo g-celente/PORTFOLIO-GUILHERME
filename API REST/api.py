@@ -38,7 +38,7 @@ def start_data_collection():
         cotacao = Moeda()
         cotacao.get_url()
         cotacao.get_coin()
-        time.sleep(2)
+        time.sleep(3600)
 
 if __name__ == "__main__":
     start_data_collection()
